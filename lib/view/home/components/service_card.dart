@@ -1,11 +1,17 @@
+// ignore_for_file: avoid_print
+
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qixer/service/booking_services/book_service.dart';
 import 'package:qixer/service/common_service.dart';
+import 'package:qixer/service/rtl_service.dart';
+import 'package:qixer/view/booking/service_personalization_page.dart';
 import 'package:qixer/view/utils/responsive.dart';
 
+import '../../../service/booking_services/personalization_service.dart';
 import '../../booking/booking_location_page.dart';
 import '../../utils/common_helper.dart';
 import '../../utils/constant_colors.dart';
@@ -92,16 +98,20 @@ class ServiceCard extends StatelessWidget {
                     const SizedBox(
                       width: 6,
                     ),
-                    Expanded(
-                      child: AutoSizeText(
-                        '\$ $price',
-                        textAlign: TextAlign.start,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          color: cc.greyFour,
-                          fontSize: 19,
-                          fontWeight: FontWeight.bold,
+                    Consumer<RtlService>(
+                      builder: (context, rtlP, child) => Expanded(
+                        child: AutoSizeText(
+                          rtlP.currencyDirection == 'left'
+                              ? '${rtlP.currency}$price'
+                              : '$price${rtlP.currency}',
+                          textAlign: TextAlign.start,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: cc.greyFour,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -116,7 +126,6 @@ class ServiceCard extends StatelessWidget {
                 splashColor: Colors.transparent,
                 highlightColor: Colors.transparent,
                 child: Container(
-                  margin: const EdgeInsets.only(right: 12),
                   padding: const EdgeInsets.all(7),
                   decoration: BoxDecoration(
                       border: Border.all(width: 1, color: cc.borderColor),
@@ -130,22 +139,30 @@ class ServiceCard extends StatelessWidget {
                   ),
                 ),
               ),
+              const SizedBox(
+                width: 11,
+              ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: cc.primaryColor, elevation: 0),
                   onPressed: () {
+                    print('service id is $serviceId');
                     //set some data of the service which is clicked, these datas may be needed
                     Provider.of<BookService>(context, listen: false)
                         .setData(serviceId, title, imageLink, price, sellerId);
                     //==========>
+                    Provider.of<PersonalizationService>(context, listen: false)
+                        .setDefaultPrice(
+                            Provider.of<BookService>(context, listen: false)
+                                .totalPrice);
+                    //fetch service extra
+                    Provider.of<PersonalizationService>(context, listen: false)
+                        .fetchServiceExtra(serviceId, context);
                     Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (BuildContext context) => BookingLocationPage(
-                          serviceId: serviceId,
-                        ),
-                      ),
-                    );
+                        context,
+                        PageTransition(
+                            type: PageTransitionType.rightToLeft,
+                            child: const ServicePersonalizationPage()));
                   },
                   child: Text(
                     buttonText,

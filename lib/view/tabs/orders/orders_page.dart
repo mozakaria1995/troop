@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qixer/service/my_orders_service.dart';
+import 'package:qixer/service/order_details_service.dart';
+import 'package:qixer/service/rtl_service.dart';
 
 import 'package:qixer/view/tabs/orders/order_details_page.dart';
 import 'package:qixer/view/utils/common_helper.dart';
@@ -53,117 +55,163 @@ class _OrdersPageState extends State<OrdersPage> {
                                     for (int i = 0;
                                         i < provider.myServices.length;
                                         i++)
-                                      Container(
-                                        alignment: Alignment.center,
-                                        margin: const EdgeInsets.only(
-                                          top: 20,
-                                          bottom: 10,
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute<void>(
+                                                builder:
+                                                    (BuildContext context) =>
+                                                        OrderDetailsPage(
+                                                            orderId: provider
+                                                                .myServices[i]
+                                                                .id),
+                                              ));
+                                          //             );
+                                        },
+                                        child: Container(
+                                          alignment: Alignment.center,
+                                          margin: const EdgeInsets.only(
+                                            top: 20,
+                                            bottom: 10,
+                                          ),
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 15, vertical: 18),
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                  color: cc.borderColor),
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Column(children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                AutoSizeText(
+                                                  '#${provider.myServices[i].id}',
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    color: cc.primaryColor,
+                                                  ),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    OrdersHelper().statusCapsule(
+                                                        OrderDetailsService()
+                                                            .getOrderStatus(
+                                                                provider
+                                                                    .myServices[
+                                                                        i]
+                                                                    .status),
+                                                        cc.greyFour),
+
+                                                    //popup button
+                                                    // Container(
+                                                    //   margin:
+                                                    //       const EdgeInsets.only(
+                                                    //           left: 8),
+                                                    //   child: PopupMenuButton(
+                                                    //     // initialValue: 2,
+                                                    //     child: const Icon(
+                                                    //         Icons.more_vert),
+                                                    //     itemBuilder: (c) {
+                                                    //       return List.generate(1,
+                                                    //           (index) {
+                                                    //         return PopupMenuItem(
+                                                    //           value: index,
+                                                    //           onTap: () async {
+                                                    //             //without the below line, navigation won't work
+                                                    //             await Future
+                                                    //                 .delayed(
+                                                    //                     Duration
+                                                    //                         .zero);
+                                                    //             Navigator.push(
+                                                    //               context,
+                                                    //               MaterialPageRoute<
+                                                    //                   void>(
+                                                    //                 builder: (BuildContext
+                                                    //                         context) =>
+                                                    //                     const OrderDetailsPage(),
+                                                    //               ),
+                                                    //             );
+                                                    //           },
+                                                    //           child: const Text(
+                                                    //               'Details'),
+                                                    //         );
+                                                    //       });
+                                                    //     },
+                                                    //   ),
+                                                    // )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+
+                                            //Divider
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  top: 17, bottom: 20),
+                                              child: CommonHelper()
+                                                  .dividerCommon(),
+                                            ),
+
+                                            provider.myServices[i].date !=
+                                                    "00.00.00"
+                                                ? Column(
+                                                    children: [
+                                                      OrdersHelper().orderRow(
+                                                        'assets/svg/calendar.svg',
+                                                        'Date',
+                                                        provider
+                                                            .myServices[i].date,
+                                                      ),
+                                                      Container(
+                                                        margin: const EdgeInsets
+                                                                .symmetric(
+                                                            vertical: 14),
+                                                        child: CommonHelper()
+                                                            .dividerCommon(),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Container(),
+
+                                            provider.myServices[i].schedule !=
+                                                    "00.00.00"
+                                                ? Column(
+                                                    children: [
+                                                      OrdersHelper().orderRow(
+                                                        'assets/svg/clock.svg',
+                                                        'Schedule',
+                                                        provider.myServices[i]
+                                                            .schedule,
+                                                      ),
+                                                      Container(
+                                                        margin: const EdgeInsets
+                                                                .symmetric(
+                                                            vertical: 14),
+                                                        child: CommonHelper()
+                                                            .dividerCommon(),
+                                                      ),
+                                                    ],
+                                                  )
+                                                : Container(),
+
+                                            Consumer<RtlService>(
+                                              builder: (context, rtlP, child) =>
+                                                  OrdersHelper().orderRow(
+                                                'assets/svg/bill.svg',
+                                                'Billed',
+                                                rtlP.currencyDirection == 'left'
+                                                    ? '${rtlP.currency}${provider.myServices[i].total.toStringAsFixed(2)}'
+                                                    : '${provider.myServices[i].total.toStringAsFixed(2)}${rtlP.currency}',
+                                              ),
+                                            )
+                                          ]),
                                         ),
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 15, vertical: 18),
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                                color: cc.borderColor),
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child: Column(children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              // AutoSizeText(
-                                              //   '#812466',
-                                              //   maxLines: 1,
-                                              //   overflow: TextOverflow.ellipsis,
-                                              //   style: TextStyle(
-                                              //     color: cc.primaryColor,
-                                              //   ),
-                                              // ),
-                                              Row(
-                                                children: [
-                                                  OrdersHelper().statusCapsule(
-                                                      provider.myServices[i]
-                                                          .paymentStatus,
-                                                      cc.greyFour),
-
-                                                  //popup button
-                                                  // Container(
-                                                  //   margin:
-                                                  //       const EdgeInsets.only(
-                                                  //           left: 8),
-                                                  //   child: PopupMenuButton(
-                                                  //     // initialValue: 2,
-                                                  //     child: const Icon(
-                                                  //         Icons.more_vert),
-                                                  //     itemBuilder: (c) {
-                                                  //       return List.generate(1,
-                                                  //           (index) {
-                                                  //         return PopupMenuItem(
-                                                  //           value: index,
-                                                  //           onTap: () async {
-                                                  //             //without the below line, navigation won't work
-                                                  //             await Future
-                                                  //                 .delayed(
-                                                  //                     Duration
-                                                  //                         .zero);
-                                                  //             Navigator.push(
-                                                  //               context,
-                                                  //               MaterialPageRoute<
-                                                  //                   void>(
-                                                  //                 builder: (BuildContext
-                                                  //                         context) =>
-                                                  //                     const OrderDetailsPage(),
-                                                  //               ),
-                                                  //             );
-                                                  //           },
-                                                  //           child: const Text(
-                                                  //               'Details'),
-                                                  //         );
-                                                  //       });
-                                                  //     },
-                                                  //   ),
-                                                  // )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-
-                                          //Divider
-                                          Container(
-                                            margin: const EdgeInsets.only(
-                                                top: 17, bottom: 20),
-                                            child:
-                                                CommonHelper().dividerCommon(),
-                                          ),
-
-                                          OrdersHelper().orderRow(
-                                            'assets/svg/calendar.svg',
-                                            'Date',
-                                            provider.myServices[i].date,
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 14),
-                                            child:
-                                                CommonHelper().dividerCommon(),
-                                          ),
-                                          OrdersHelper().orderRow(
-                                            'assets/svg/clock.svg',
-                                            'Schedule',
-                                            provider.myServices[i].schedule,
-                                          ),
-                                          Container(
-                                            margin: const EdgeInsets.symmetric(
-                                                vertical: 14),
-                                            child:
-                                                CommonHelper().dividerCommon(),
-                                          ),
-                                          OrdersHelper().orderRow(
-                                            'assets/svg/bill.svg',
-                                            'Billed',
-                                            '\$${provider.myServices[i].total.toStringAsFixed(2)}',
-                                          ),
-                                        ]),
                                       ),
 
                                     //

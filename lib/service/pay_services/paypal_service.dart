@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http_auth/http_auth.dart';
 import 'package:provider/provider.dart';
+import 'package:qixer/service/payment_gateway_list_service.dart';
 import 'package:qixer/view/payments/PaypalPayment.dart';
 
 import '../booking_services/place_order_service.dart';
@@ -16,9 +17,9 @@ class PaypalService {
           onFinish: (number) async {
             print('paypal payment successfull');
 
+            //make payment status success
             Provider.of<PlaceOrderService>(context, listen: false)
-                .placeOrder(context, null);
-
+                .makePaymentSuccess(context);
             // payment done
             print('order id: ' + number);
           },
@@ -31,13 +32,21 @@ class PaypalService {
 //  String domain = "https://api.paypal.com"; // for production mode
 
   // change clientId and secret with your own, provided by paypal
-  String clientId =
-      'AUP7AuZMwJbkee-2OmsSZrU-ID1XUJYE-YB-2JOrxeKV-q9ZJZYmsr-UoKuJn4kwyCv5ak26lrZyb-gb';
-  String secret =
-      'EEIxCuVnbgING9EyzcF2q-gpacLneVbngQtJ1mbx-42Lbq-6Uf6PEjgzF7HEayNsI4IFmB9_CZkECc3y';
 
   // for getting the access token from Paypal
-  Future<String> getAccessToken() async {
+  Future<String> getAccessToken(BuildContext context) async {
+    // String clientId =
+    //     'AUP7AuZMwJbkee-2OmsSZrU-ID1XUJYE-YB-2JOrxeKV-q9ZJZYmsr-UoKuJn4kwyCv5ak26lrZyb-gb';
+    // String secret =
+    //     'EEIxCuVnbgING9EyzcF2q-gpacLneVbngQtJ1mbx-42Lbq-6Uf6PEjgzF7HEayNsI4IFmB9_CZkECc3y';
+    String clientId =
+        Provider.of<PaymentGatewayListService>(context, listen: false)
+                .publicKey ??
+            '';
+    String secret =
+        Provider.of<PaymentGatewayListService>(context, listen: false)
+                .secretKey ??
+            '';
     try {
       var client = BasicAuthClient(clientId, secret);
       var response = await client.post(
@@ -84,6 +93,7 @@ class PaypalService {
         }
         throw Exception("0");
       } else {
+        print(response.body);
         throw Exception(body["message"]);
       }
     } catch (e) {

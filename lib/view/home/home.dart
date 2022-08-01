@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
+import 'package:qixer/service/all_services_service.dart';
 import 'package:qixer/service/home_services/category_service.dart';
 import 'package:qixer/service/home_services/recent_services_service.dart';
 import 'package:qixer/service/home_services/slider_service.dart';
 import 'package:qixer/service/home_services/top_rated_services_service.dart';
 import 'package:qixer/service/profile_service.dart';
+import 'package:qixer/service/rtl_service.dart';
 import 'package:qixer/service/serachbar_with_dropdown_service.dart';
 import 'package:qixer/view/home/categories/all_categories_page.dart';
 import 'package:qixer/view/home/components/categories.dart';
 import 'package:qixer/view/home/components/recent_services.dart';
+import 'package:qixer/view/home/top_all_service_page.dart';
 import 'package:qixer/view/search/search_bar_page_with_dropdown.dart';
 import 'package:qixer/view/home/components/slider_home.dart';
 import 'package:qixer/view/home/components/top_rated_services.dart';
@@ -42,7 +45,10 @@ class _HomepageState extends State<Homepage> {
         .fetchRecentService();
     Provider.of<ProfileService>(context, listen: false).getProfileDetails();
     Provider.of<SearchBarWithDropdownService>(context, listen: false)
-        .fetchCountries();
+        .fetchStates();
+    Provider.of<RtlService>(context, listen: false).fetchCurrency();
+    //language direction (ltr or rtl)
+    Provider.of<RtlService>(context, listen: false).fetchDirection();
   }
 
   @override
@@ -225,56 +231,10 @@ class _HomepageState extends State<Homepage> {
                     ),
 
                     //Top rated sellers ========>
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    SectionTitle(
-                      cc: cc,
-                      title: 'Top rated services',
-                      pressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const AllServicePage(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(
-                      height: 18,
-                    ),
 
                     TopRatedServices(cc: cc),
 
-                    //Discount images
-                    // const SizedBox(
-                    //   height: 25,
-                    // ),
-                    // Discounts(cc: cc),
-
-                    //Top rated sellers ========>
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SectionTitle(
-                      cc: cc,
-                      title: 'Recently listed',
-                      pressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<void>(
-                            builder: (BuildContext context) =>
-                                const AllServicePage(),
-                          ),
-                        );
-                      },
-                    ),
-
-                    const SizedBox(
-                      height: 18,
-                    ),
+                    //Recent service ========>
 
                     RecentServices(cc: cc),
 

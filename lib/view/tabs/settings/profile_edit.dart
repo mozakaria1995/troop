@@ -1,15 +1,15 @@
 import 'dart:io';
 
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
 import 'package:qixer/service/country_states_service.dart';
 import 'package:qixer/service/profile_edit_service.dart';
 import 'package:qixer/service/profile_service.dart';
+import 'package:qixer/service/rtl_service.dart';
 import 'package:qixer/view/auth/signup/components/country_states_dropdowns.dart';
-import 'package:qixer/view/auth/signup/components/email_name_fields.dart';
 import 'package:qixer/view/auth/signup/signup_helper.dart';
 import 'package:qixer/view/booking/components/textarea_field.dart';
 import 'package:qixer/view/utils/common_helper.dart';
@@ -36,10 +36,20 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
   TextEditingController addressController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController aboutController = TextEditingController();
+  String? countryCode;
 
   @override
   void initState() {
     super.initState();
+    countryCode = Provider.of<ProfileService>(context, listen: false)
+        .profileDetails
+        .userDetails
+        .countryCode;
+    //set country code
+    Future.delayed(const Duration(milliseconds: 600), () {
+      Provider.of<ProfileEditService>(context, listen: false)
+          .setCountryCode(countryCode);
+    });
 
     fullNameController.text =
         Provider.of<ProfileService>(context, listen: false)
@@ -64,12 +74,6 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                 .userDetails
                 .postCode ??
             '';
-    addressController.text = Provider.of<ProfileService>(context, listen: false)
-            .profileDetails
-            .userDetails
-            .address ??
-        '';
-
     addressController.text = Provider.of<ProfileService>(context, listen: false)
             .profileDetails
             .userDetails
@@ -235,14 +239,18 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         CommonHelper().labelCommon("Phone"),
-                        IntlPhoneField(
-                          controller: phoneController,
-                          decoration: SignupHelper().phoneFieldDecoration(),
-                          initialCountryCode: 'IN',
-                          onChanged: (phone) {
-                            // Provider.of<SignupService>(context, listen: false)
-                            //     .setPhone(phone.completeNumber);
-                          },
+                        Consumer<RtlService>(
+                          builder: (context, rtlP, child) => IntlPhoneField(
+                            controller: phoneController,
+                            decoration: SignupHelper().phoneFieldDecoration(),
+                            initialCountryCode: countryCode,
+                            textAlign: rtlP.direction == 'ltr'
+                                ? TextAlign.left
+                                : TextAlign.right,
+                            onChanged: (phone) {
+                              provider.setCountryCode(phone.countryISOCode);
+                            },
+                          ),
                         ),
                         CommonHelper().labelCommon("Post code"),
                         CustomInput(
@@ -301,11 +309,20 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                     ),
                     CommonHelper().buttonOrange('Save', () async {
                       if (provider.isloading == false) {
+                        if (addressController.text.isEmpty) {
+                          OthersHelper().showToast(
+                              'Address field is required', Colors.black);
+                          return;
+                        } else if (phoneController.text.isEmpty) {
+                          OthersHelper().showToast(
+                              'Phone field is required', Colors.black);
+                          return;
+                        }
                         showTopSnackBar(
                             context,
                             const CustomSnackBar.success(
                               message:
-                                  "Updating profile...It may take few minutes",
+                                  "Updating profile...It may take few seconds",
                             ),
                             persistent: true,
                             onAnimationControllerInit: (controller) =>

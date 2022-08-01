@@ -1,9 +1,18 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
+import 'package:qixer/service/booking_services/book_service.dart';
+import 'package:qixer/service/booking_services/personalization_service.dart';
 
 class BookConfirmationService with ChangeNotifier {
   bool isPanelOpened = false;
 
   double totalPriceAfterAllcalculation = 0;
+  var subTotalAfterAllCalculation = 0;
+  double totalPriceOnlineServiceAfterAllCalculation = 0;
+  var subTotalOnlineServiceAfterAllCalculation = 0;
+
+  var taxPrice;
+  var taxPriceOnline;
 
   setPanelOpenedTrue() {
     isPanelOpened = true;
@@ -39,7 +48,17 @@ class BookConfirmationService with ChangeNotifier {
     var extraTotal = 0;
     includedTotal = includedTotalPrice(includedList);
     extraTotal = extrasTotalPrice(extrasList);
-    return includedTotal + extraTotal;
+    subTotalAfterAllCalculation = includedTotal + extraTotal;
+
+    return subTotalAfterAllCalculation;
+  }
+
+  calculateSubtotalForOnline(List extrasList) {
+    var extraTotal = 0;
+
+    extraTotal = extrasTotalPrice(extrasList);
+    subTotalOnlineServiceAfterAllCalculation = extraTotal;
+    return extraTotal;
   }
 
   calculateTax(
@@ -48,16 +67,30 @@ class BookConfirmationService with ChangeNotifier {
     List extrasList,
   ) {
     var subTotal = calculateSubtotal(includedList, extrasList);
-    var tax = (subTotal * taxPercent) / 100;
+    taxPrice = (subTotal * taxPercent) / 100 ?? 0;
 
-    return tax;
+    return taxPrice;
   }
 
   calculateTotal(taxPercent, List includedList, List extrasList) {
     var subTotal = calculateSubtotal(includedList, extrasList);
     var tax = calculateTax(taxPercent, includedList, extrasList);
+
     totalPriceAfterAllcalculation = subTotal + tax;
-    Future.delayed(Duration(microseconds: 500), () {
+    Future.delayed(const Duration(microseconds: 500), () {
+      notifyListeners();
+    });
+  }
+
+  calculateTotalOnlineService(
+      taxPercent, List includedList, List extrasList, BuildContext context) {
+    var subTotal = calculateSubtotal(includedList, extrasList);
+    var tax = calculateTax(taxPercent, includedList, extrasList);
+    totalPriceOnlineServiceAfterAllCalculation = subTotal +
+        tax +
+        Provider.of<PersonalizationService>(context, listen: false)
+            .defaultprice;
+    Future.delayed(const Duration(microseconds: 500), () {
       notifyListeners();
     });
   }
@@ -65,6 +98,8 @@ class BookConfirmationService with ChangeNotifier {
   caculateTotalAfterCouponApplied(couponDiscount) {
     totalPriceAfterAllcalculation =
         totalPriceAfterAllcalculation - couponDiscount;
+    totalPriceOnlineServiceAfterAllCalculation =
+        totalPriceOnlineServiceAfterAllCalculation - couponDiscount;
     notifyListeners();
   }
 }

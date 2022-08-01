@@ -1,7 +1,7 @@
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterzilla_fixed_grid/flutterzilla_fixed_grid.dart';
-import 'package:intl/intl.dart';
+
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import 'package:qixer/service/book_steps_service.dart';
@@ -9,6 +9,7 @@ import 'package:qixer/service/booking_services/book_service.dart';
 import 'package:qixer/service/booking_services/coupon_service.dart';
 import 'package:qixer/service/booking_services/shedule_service.dart';
 import 'package:qixer/service/common_service.dart';
+import 'package:qixer/view/booking/booking_location_page.dart';
 
 import 'package:qixer/view/booking/delivery_address_page.dart.dart';
 
@@ -56,10 +57,12 @@ class _ServiceSchedulePageState extends State<ServiceSchedulePage> {
         }),
         body: Consumer<SheduleService>(
           builder: (context, provider, child) {
+            print(provider.totalDay);
             //if user didnt select anything then go with the default value
             if (provider.isloading == false &&
                 provider.schedules != 'nothing' &&
                 _selectedTime == null) {
+              print(provider.totalDay);
               _selectedTime = provider.schedules.schedules[0].schedule;
               Future.delayed(const Duration(milliseconds: 500), () {
                 setState(() {});
@@ -83,7 +86,9 @@ class _ServiceSchedulePageState extends State<ServiceSchedulePage> {
                             DatePicker(
                               DateTime.now(),
                               initialSelectedDate: DateTime.now(),
-                              daysCount: provider.totalDay,
+                              daysCount: provider.totalDay == 0
+                                  ? 7
+                                  : provider.totalDay,
                               selectionColor: cc.primaryColor,
                               selectedTextColor: Colors.white,
                               onDateChange: (value) {
@@ -254,7 +259,7 @@ class _ServiceSchedulePageState extends State<ServiceSchedulePage> {
                                 context,
                                 PageTransition(
                                     type: PageTransitionType.rightToLeft,
-                                    child: const DeliveryAddressPage()));
+                                    child: const BookingLocationPage()));
                           }
                         }),
                         const SizedBox(

@@ -1,7 +1,9 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:qixer/service/common_service.dart';
+import 'package:qixer/service/profile_service.dart';
 import 'package:qixer/view/auth/login/login.dart';
 import 'package:qixer/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +33,7 @@ class LogoutService with ChangeNotifier {
         // "Content-Type": "application/json",
         "Authorization": "Bearer $token",
       };
-      print(token);
+
       setLoadingTrue();
       var response = await http.post(
         Uri.parse('$baseApi/user/logout'),
@@ -50,6 +52,10 @@ class LogoutService with ChangeNotifier {
           (route) => false,
         );
 
+        // clear profile data =====>
+        Provider.of<ProfileService>(context, listen: false)
+            .setEverythingToDefault();
+
         clear();
         setLoadingFalse();
       } else {
@@ -63,12 +69,13 @@ class LogoutService with ChangeNotifier {
   //clear saved email, pass and token
   clear() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('email');
-    prefs.remove('pass');
-    prefs.remove('token');
-    prefs.remove('userId');
-    prefs.remove('userName');
-    prefs.setBool('keepLoggedIn', false);
-    prefs.setBool('googleLogin', false);
+    prefs.clear();
+    // prefs.remove('email');
+    // prefs.remove('pass');
+    // prefs.remove('token');
+    // prefs.remove('userId');
+    // prefs.remove('userName');
+    // prefs.setBool('keepLoggedIn', false);
+    // prefs.setBool('googleLogin', false);
   }
 }

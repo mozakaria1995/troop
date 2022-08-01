@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qixer/service/rtl_service.dart';
 
 import '../../../service/booking_services/personalization_service.dart';
 import '../../services/service_helper.dart';
@@ -65,7 +66,7 @@ class _ExtrasState extends State<Extras> {
                     clipBehavior: Clip.none,
                     children: [
                       Container(
-                        alignment: Alignment.topLeft,
+                        // alignment: Alignment.topLeft,
                         width: 200,
                         margin: const EdgeInsets.only(
                           right: 17,
@@ -77,7 +78,7 @@ class _ExtrasState extends State<Extras> {
                                     : widget.cc.borderColor),
                             borderRadius: BorderRadius.circular(9)),
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 13, vertical: 15),
+                            horizontal: 15, vertical: 15),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -95,12 +96,16 @@ class _ExtrasState extends State<Extras> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '\$${widget.additionalServices[i]['price']} x',
-                                  style: TextStyle(
-                                    color: widget.cc.greyPrimary,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold,
+                                Consumer<RtlService>(
+                                  builder: (context, rtlP, child) => Text(
+                                    rtlP.currencyDirection == 'left'
+                                        ? '${rtlP.currency}${widget.additionalServices[i]['price']} x'
+                                        : '${widget.additionalServices[i]['price']}${rtlP.currency} x',
+                                    style: TextStyle(
+                                      color: widget.cc.greyPrimary,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
 

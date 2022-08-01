@@ -338,7 +338,7 @@ class _LoginPageState extends State<LoginPage> {
                         ],
                       ),
 
-                      //Divider (or)
+                      // Divider (or)
                       const SizedBox(
                         height: 30,
                       ),
@@ -378,7 +378,9 @@ class _LoginPageState extends State<LoginPage> {
                       Consumer<GoogleSignInService>(
                         builder: (context, gProvider, child) => InkWell(
                             onTap: () {
-                              gProvider.googleLogin(context);
+                              if (gProvider.isloading == false) {
+                                gProvider.googleLogin(context);
+                              }
                             },
                             child: LoginHelper().commonButton(
                                 'assets/icons/google.png', "Login with Google",
@@ -389,15 +391,20 @@ class _LoginPageState extends State<LoginPage> {
                       const SizedBox(
                         height: 20,
                       ),
-                      InkWell(
+                      Consumer<FacebookLoginService>(
+                        builder: (context, fProvider, child) => InkWell(
                           onTap: () {
-                            Provider.of<FacebookLoginService>(context,
-                                    listen: false)
-                                .checkIfLoggedIn();
+                            if (fProvider.isloading == false) {
+                              fProvider.checkIfLoggedIn(context);
+                            }
                           },
                           child: LoginHelper().commonButton(
                               'assets/icons/facebook.png',
-                              "Login with Facebook")),
+                              "Login with Facebook",
+                              isloading:
+                                  fProvider.isloading == false ? false : true),
+                        ),
+                      ),
 
                       const SizedBox(
                         height: 30,

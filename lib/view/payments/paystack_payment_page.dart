@@ -5,6 +5,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:http/http.dart' as http;
+import 'package:provider/provider.dart';
+
+import '../../service/booking_services/place_order_service.dart';
+import '../../service/payment_gateway_list_service.dart';
 
 class PaystackPaymentPage extends StatefulWidget {
   const PaystackPaymentPage({Key? key}) : super(key: key);
@@ -16,27 +20,32 @@ class PaystackPaymentPage extends StatefulWidget {
 class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   final _formKey = GlobalKey<FormState>();
-
+  final _verticalSizeBox = const SizedBox(height: 20.0);
   final _horizontalSizeBox = const SizedBox(width: 10.0);
   final plugin = PaystackPlugin();
-
-  int _radioValue = 1;
+  final _border = Container(
+    width: double.infinity,
+    height: 1.0,
+    color: Colors.red,
+  );
+  int _radioValue = 0;
   CheckoutMethod _method = CheckoutMethod.selectable;
   bool _inProgress = false;
   String? _cardNumber;
   String? _cvv;
   int? _expiryMonth;
   int? _expiryYear;
-
   String backendUrl = 'https://api.paystack.co';
 // Set this to a public key that matches the secret key you supplied while creating the heroku instance
-  String paystackPublicKey = 'pk_test_a7e58f850adce9a73750e61668d4f492f67abcd9';
+  // String paystackPublicKey = 'pk_test_a7e58f850adce9a73750e61668d4f492f67abcd9';
 
   @override
   void initState() {
-    plugin.initialize(
-      publicKey: paystackPublicKey,
-    );
+    String paystackPublicKey =
+        Provider.of<PaymentGatewayListService>(context, listen: false)
+                .publicKey ??
+            '';
+    plugin.initialize(publicKey: paystackPublicKey);
     super.initState();
   }
 
@@ -44,7 +53,7 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: const Text('Paystack')),
+      appBar: AppBar(title: Text('Select method')),
       body: Container(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -52,40 +61,13 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
           child: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                // Row(
-                //   crossAxisAlignment: CrossAxisAlignment.center,
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: <Widget>[
-                //     const Expanded(
-                //       child: Text('Initalize transaction from:'),
-                //     ),
-                //     Expanded(
-                //       child: Column(
-                //           mainAxisSize: MainAxisSize.min,
-                //           children: <Widget>[
-                //             RadioListTile<int>(
-                //               value: 0,
-                //               groupValue: _radioValue,
-                //               onChanged: _handleRadioValueChanged,
-                //               title: const Text('Local'),
-                //             ),
-                //             RadioListTile<int>(
-                //               value: 1,
-                //               groupValue: _radioValue,
-                //               onChanged: _handleRadioValueChanged,
-                //               title: const Text('Server'),
-                //             ),
-                //           ]),
-                //     )
-                //   ],
-                // ),
                 Theme(
                   data: Theme.of(context).copyWith(
                     accentColor: green,
                     primaryColorLight: Colors.white,
                     primaryColorDark: navyBlue,
                     textTheme: Theme.of(context).textTheme.copyWith(
-                          bodyText2: const TextStyle(
+                          bodyText2: TextStyle(
                             color: lightBlue,
                           ),
                         ),
@@ -103,9 +85,6 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
                           : Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                const SizedBox(
-                                  height: 40.0,
-                                ),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -143,7 +122,7 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
                                     _horizontalSizeBox,
                                     Flexible(
                                       flex: 2,
-                                      child: Container(
+                                      child: SizedBox(
                                         width: double.infinity,
                                         child: _getPlatformButton(
                                           'Checkout',
@@ -166,13 +145,9 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
     );
   }
 
-  void _handleRadioValueChanged(int? value) {
-    if (value != null) setState(() => _radioValue = value);
-  }
-
   _handleCheckout(BuildContext context) async {
     if (_method != CheckoutMethod.card && _isLocal) {
-      _showMessage('Please select a method');
+      // _showMessage('Select server initialization method at the top');
       return;
     }
     setState(() => _inProgress = true);
@@ -195,64 +170,25 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
         method: _method,
         charge: charge,
         fullscreen: false,
-        logo: const MyLogo(),
+        logo: MyLogo(),
       );
       print('Response = $response');
+      if (response.status == true) {
+        print("Payment Sucessfull");
+
+        Provider.of<PlaceOrderService>(context, listen: false)
+            .makePaymentSuccess(context);
+      } else {
+        //payment failed
+        Provider.of<PlaceOrderService>(context, listen: false)
+            .setLoadingFalse();
+      }
       setState(() => _inProgress = false);
-      _updateStatus(response.reference, '$response');
+      // _updateStatus(response.reference, '$response');
     } catch (e) {
       setState(() => _inProgress = false);
-      _showMessage("Check console for error");
+      // _showMessage("Check console for error");
       rethrow;
-    }
-  }
-
-  _startAfreshCharge() async {
-    _formKey.currentState?.save();
-
-    Charge charge = Charge();
-    charge.card = _getCardFromUI();
-
-    setState(() => _inProgress = true);
-
-    if (_isLocal) {
-      // Set transaction params directly in app (note that these params
-      // are only used if an access_code is not set. In debug mode,
-      // setting them after setting an access code would throw an exception
-
-      charge
-        ..amount = 10000 // In base currency
-        ..email = 'customer@email.com'
-        ..reference = _getReference()
-        ..putCustomField('Charged From', 'Flutter SDK');
-      _chargeCard(charge);
-    } else {
-      // Perform transaction/initialize on Paystack server to get an access code
-      // documentation: https://developers.paystack.co/reference#initialize-a-transaction
-      charge.accessCode = await _fetchAccessCodeFrmServer(_getReference());
-      _chargeCard(charge);
-    }
-  }
-
-  _chargeCard(Charge charge) async {
-    final response = await plugin.chargeCard(context, charge: charge);
-
-    final reference = response.reference;
-
-    // Checking if the transaction is successful
-    if (response.status) {
-      _verifyOnServer(reference);
-      return;
-    }
-
-    print('response status is ${response.status}');
-
-    // The transaction failed. Checking if we should verify the transaction
-    if (response.verify) {
-      _verifyOnServer(reference);
-    } else {
-      setState(() => _inProgress = false);
-      _updateStatus(reference, response.message);
     }
   }
 
@@ -275,27 +211,6 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
       expiryMonth: _expiryMonth,
       expiryYear: _expiryYear,
     );
-
-    // Using Cascade notation (similar to Java's builder pattern)
-//    return PaymentCard(
-//        number: cardNumber,
-//        cvc: cvv,
-//        expiryMonth: expiryMonth,
-//        expiryYear: expiryYear)
-//      ..name = 'Segun Chukwuma Adamu'
-//      ..country = 'Nigeria'
-//      ..addressLine1 = 'Ikeja, Lagos'
-//      ..addressPostalCode = '100001';
-
-    // Using optional parameters
-//    return PaymentCard(
-//        number: cardNumber,
-//        cvc: cvv,
-//        expiryMonth: expiryMonth,
-//        expiryYear: expiryYear,
-//        name: 'Ismail Adebola Emeka',
-//        addressCountry: 'Nigeria',
-//        addressLine1: '90, Nnebisi Road, Asaba, Deleta State');
   }
 
   Widget _getPlatformButton(String string, Function() function) {
@@ -334,46 +249,31 @@ class _PaystackPaymentPageState extends State<PaystackPaymentPage> {
       print('Response for access code = $accessCode');
     } catch (e) {
       setState(() => _inProgress = false);
-      _updateStatus(
-          reference,
-          'There was a problem getting a new access code form'
-          ' the backend: $e');
+      // _updateStatus(
+      //     reference,
+      //     'There was a problem getting a new access code form'
+      //     ' the backend: $e');
     }
 
     return accessCode;
   }
 
-  void _verifyOnServer(String? reference) async {
-    _updateStatus(reference, 'Verifying...');
-    String url = '$backendUrl/verify/$reference';
-    try {
-      http.Response response = await http.get(Uri.parse(url));
-      var body = response.body;
-      _updateStatus(reference, body);
-    } catch (e) {
-      _updateStatus(
-          reference,
-          'There was a problem verifying %s on the backend: '
-          '$reference $e');
-    }
-    setState(() => _inProgress = false);
-  }
+  // _updateStatus(String? reference, String message) {
+  //   _showMessage('Reference: $reference \n\ Response: $message',
+  //       const Duration(seconds: 7));
+  // }
 
-  _updateStatus(String? reference, String message) {
-    _showMessage('Transaction cancelled', const Duration(seconds: 7));
-  }
-
-  _showMessage(String message,
-      [Duration duration = const Duration(seconds: 4)]) {
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text(message),
-      duration: duration,
-      action: SnackBarAction(
-          label: 'CLOSE',
-          onPressed: () =>
-              ScaffoldMessenger.of(context).removeCurrentSnackBar()),
-    ));
-  }
+  // _showMessage(String message,
+  //     [Duration duration = const Duration(seconds: 4)]) {
+  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //     content: Text(message),
+  //     duration: duration,
+  //     action: SnackBarAction(
+  //         label: 'CLOSE',
+  //         onPressed: () =>
+  //             ScaffoldMessenger.of(context).removeCurrentSnackBar()),
+  //   ));
+  // }
 
   bool get _isLocal => _radioValue == 0;
 }

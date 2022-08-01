@@ -11,21 +11,21 @@ String serviceDetailsModelToJson(ServiceDetailsModel data) =>
     json.encode(data.toJson());
 
 class ServiceDetailsModel {
-  ServiceDetailsModel({
-    required this.serviceDetails,
-    required this.serviceImage,
-    this.serviceSellerName,
-    required this.serviceSellerImage,
-    this.sellerCompleteOrder,
-    this.sellerRating,
-    this.orderCompletionRate,
-    this.sellerFrom,
-    required this.sellerSince,
-    required this.serviceIncludes,
-    required this.serviceBenifits,
-    required this.serviceReviews,
-    required this.reviewerImage,
-  });
+  ServiceDetailsModel(
+      {required this.serviceDetails,
+      required this.serviceImage,
+      this.serviceSellerName,
+      required this.serviceSellerImage,
+      this.sellerCompleteOrder,
+      this.sellerRating,
+      this.orderCompletionRate,
+      this.sellerFrom,
+      required this.sellerSince,
+      required this.serviceIncludes,
+      required this.serviceBenifits,
+      required this.serviceReviews,
+      required this.reviewerImage,
+      this.videoUrl});
 
   ServiceDetails serviceDetails;
   Image serviceImage;
@@ -40,6 +40,7 @@ class ServiceDetailsModel {
   List<ServiceBenifit> serviceBenifits;
   List<ServiceReview> serviceReviews;
   List<dynamic> reviewerImage;
+  String? videoUrl;
 
   factory ServiceDetailsModel.fromJson(Map<String, dynamic> json) =>
       ServiceDetailsModel(
@@ -59,6 +60,7 @@ class ServiceDetailsModel {
         serviceReviews: List<ServiceReview>.from(
             json["service_reviews"].map((x) => ServiceReview.fromJson(x))),
         reviewerImage: List<dynamic>.from(json["reviewer_image"].map((x) => x)),
+        videoUrl: json["video_url"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -78,6 +80,7 @@ class ServiceDetailsModel {
         "service_reviews":
             List<dynamic>.from(serviceReviews.map((x) => x.toJson())),
         "reviewer_image": List<dynamic>.from(reviewerImage.map((x) => x)),
+        "video_url": videoUrl,
       };
 }
 
@@ -160,6 +163,7 @@ class ServiceDetails {
     this.slug,
     this.description,
     this.image,
+    this.video,
     this.status,
     this.isServiceOn,
     this.price,
@@ -169,6 +173,7 @@ class ServiceDetails {
     this.featured,
     required this.sellerForMobile,
     required this.reviewsForMobile,
+    required this.serviceFaq,
   });
 
   int? id;
@@ -180,15 +185,17 @@ class ServiceDetails {
   String? slug;
   String? description;
   String? image;
+  String? video;
   int? status;
   int? isServiceOn;
-  int? price;
+  var price;
   int? tax;
   int? view;
   int? soldCount;
   int? featured;
   SellerForMobile sellerForMobile;
   List<ServiceReview> reviewsForMobile;
+  List<ServiceFaq> serviceFaq;
 
   factory ServiceDetails.fromJson(Map<String, dynamic> json) => ServiceDetails(
         id: json["id"],
@@ -200,6 +207,7 @@ class ServiceDetails {
         slug: json["slug"],
         description: json["description"],
         image: json["image"],
+        video: json["video"],
         status: json["status"],
         isServiceOn: json["is_service_on"],
         price: json["price"],
@@ -210,6 +218,8 @@ class ServiceDetails {
         sellerForMobile: SellerForMobile.fromJson(json["seller_for_mobile"]),
         reviewsForMobile: List<ServiceReview>.from(
             json["reviews_for_mobile"].map((x) => ServiceReview.fromJson(x))),
+        serviceFaq: List<ServiceFaq>.from(
+            json["service_faq"].map((x) => ServiceFaq.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -222,6 +232,7 @@ class ServiceDetails {
         "slug": slug,
         "description": description,
         "image": image,
+        "video": video,
         "status": status,
         "is_service_on": isServiceOn,
         "price": price,
@@ -241,6 +252,7 @@ class ServiceReview {
     this.serviceId,
     this.rating,
     this.message,
+    this.buyerName,
     this.buyerId,
     required this.buyerForMobile,
   });
@@ -249,6 +261,7 @@ class ServiceReview {
   int? serviceId;
   int? rating;
   String? message;
+  String? buyerName;
   int? buyerId;
   BuyerForMobile buyerForMobile;
 
@@ -257,6 +270,7 @@ class ServiceReview {
         serviceId: json["service_id"],
         rating: json["rating"],
         message: json["message"],
+        buyerName: json["buyer_name"],
         buyerId: json["buyer_id"],
         buyerForMobile: BuyerForMobile.fromJson(json["buyer_for_mobile"]),
       );
@@ -266,8 +280,41 @@ class ServiceReview {
         "service_id": serviceId,
         "rating": rating,
         "message": message,
+        "buyerName": buyerName,
         "buyer_id": buyerId,
         "buyer_for_mobile": buyerForMobile.toJson(),
+      };
+}
+
+class ServiceFaq {
+  ServiceFaq({
+    this.id,
+    this.serviceId,
+    this.sellerId,
+    this.title,
+    this.description,
+  });
+
+  int? id;
+  int? serviceId;
+  int? sellerId;
+  String? title;
+  String? description;
+
+  factory ServiceFaq.fromJson(Map<String, dynamic> json) => ServiceFaq(
+        id: json["id"],
+        serviceId: json["service_id"],
+        sellerId: json["seller_id"],
+        title: json["title"],
+        description: json["description"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "service_id": serviceId,
+        "seller_id": sellerId,
+        "title": title,
+        "description": description,
       };
 }
 

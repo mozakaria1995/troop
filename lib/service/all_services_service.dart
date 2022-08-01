@@ -35,6 +35,8 @@ class AllServicesService with ChangeNotifier {
   var selectedRating = 'All';
   var selectedRatingId = 0;
 
+  //=================>
+
   var sortbyDropdownList = [
     'All',
     'Highest Price',
@@ -47,8 +49,28 @@ class AllServicesService with ChangeNotifier {
     'lowest_price',
     'latest_service'
   ];
+
   var selectedSortby = 'All';
   var selectedSortbyId = '';
+
+  setSortbyValue(value) {
+    selectedSortby = value;
+    notifyListeners();
+  }
+
+  setSelectedSortbyId(value) {
+    selectedSortbyId = value;
+    print('selected sort by id $selectedSortbyId');
+    notifyListeners();
+  }
+
+  defaultSortBy() {
+    selectedSortby = 'All';
+    selectedSortbyId = '';
+    notifyListeners();
+  }
+
+  // ===============>
 
   setCategoryValue(value) {
     selectedCategory = value;
@@ -62,11 +84,6 @@ class AllServicesService with ChangeNotifier {
 
   setRatingValue(value) {
     selectedRating = value;
-    notifyListeners();
-  }
-
-  setSortbyValue(value) {
-    selectedSortby = value;
     notifyListeners();
   }
 
@@ -85,12 +102,6 @@ class AllServicesService with ChangeNotifier {
   setSelectedRatingId(value) {
     selectedRatingId = value;
     print('selected rating id $selectedRatingId');
-    notifyListeners();
-  }
-
-  setSelectedSortbyId(value) {
-    selectedSortbyId = value;
-    print('selected sort by id $selectedSortbyId');
     notifyListeners();
   }
 
@@ -337,32 +348,4 @@ class AllServicesService with ChangeNotifier {
     serviceMap = newListMap;
     notifyListeners();
   }
-
-  // getApiLink() {
-  //   if (selectedCategoryId == 0 && selectedSubcatId == 0) {
-  //     //when no option is selected from dropdown
-  //     return '$baseApi/service-list/all-services';
-  //   } else if (selectedCategoryId != 0 && selectedSubcatId == 0) {
-  //     //if only category is selected
-  //     return '$baseApi/service-list/search-by-category/$selectedCategoryId/';
-  //   } else if (selectedCategoryId == 0 &&
-  //       selectedSubcatId == 0 &&
-  //       selectedSortby == 'Sort by' &&
-  //       selectedRatingId != 0) {
-  //     //if nothing is selected, only rating is selected
-  //     // return '$baseApi/service-list/category-subcategory-rating-search/$categoryid/3/4';
-  //   } else if (selectedCategoryId != 0 &&
-  //       selectedSubcatId != 0 &&
-  //       selectedRatingId != 0 &&
-  //       selectedSortby == 'Sort by') {
-  //     //if category subcategory and rating selected, sort by not selected
-
-  //   } else if (selectedCategoryId != 0 &&
-  //       selectedSubcatId != 0 &&
-  //       selectedRatingId == 0 &&
-  //       selectedSortby == 'Sort by') {
-  //     //if only category and subcategory both is selected , nothing else
-  //     return '$baseApi/service-list/category-subcategory-search/$selectedCategoryId/$selectedSubcatId/';
-  //   }
-  // }
 }

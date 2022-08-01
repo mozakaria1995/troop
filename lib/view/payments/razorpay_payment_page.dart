@@ -1,8 +1,11 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:qixer/view/booking/booking_helper.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../service/booking_services/place_order_service.dart';
+import '../../service/payment_gateway_list_service.dart';
 
 class RazorpayPaymentPage extends StatefulWidget {
   const RazorpayPaymentPage({Key? key}) : super(key: key);
@@ -39,14 +42,24 @@ class _RazorpayPaymentPageState extends State<RazorpayPaymentPage> {
     _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
     _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
     _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
-    launchRazorPay();
+    launchRazorPay(context);
   }
 
-  void launchRazorPay() {
+  void launchRazorPay(BuildContext context) {
     int amountToPay = int.parse(amount) * 100;
 
+    // var options = {
+    //   'key': 'rzp_test_FSFnXQOqPP1YbJ',
+    //   'amount': "$amountToPay",
+    //   'name': name,
+    //   'description': ' ',
+    //   'prefill': {'contact': phone, 'email': email}
+    // };
+
     var options = {
-      'key': 'rzp_test_FSFnXQOqPP1YbJ',
+      'key': Provider.of<PaymentGatewayListService>(context, listen: false)
+              .publicKey ??
+          '',
       'amount': "$amountToPay",
       'name': name,
       'description': ' ',
@@ -64,7 +77,7 @@ class _RazorpayPaymentPageState extends State<RazorpayPaymentPage> {
     print("Payment Sucessfull");
 
     Provider.of<PlaceOrderService>(context, listen: false)
-        .placeOrder(context, null);
+        .makePaymentSuccess(context);
 
     // print(
     //     "${response.orderId} \n${response.paymentId} \n${response.signature}");
@@ -72,7 +85,7 @@ class _RazorpayPaymentPageState extends State<RazorpayPaymentPage> {
 
   void _handlePaymentError(PaymentFailureResponse response) {
     print("Payemt Failed");
-
+    Provider.of<PlaceOrderService>(context, listen: false).setLoadingFalse();
     // print("${response.code}\n${response.message}");
   }
 

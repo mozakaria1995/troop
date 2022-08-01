@@ -26,9 +26,18 @@ class ProfileService with ChangeNotifier {
     notifyListeners();
   }
 
+  setEverythingToDefault() {
+    profileDetails = null;
+    profileImage = null;
+    ordersList = [];
+    notifyListeners();
+  }
+
   getProfileDetails({bool isFromProfileupdatePage = false}) async {
     if (isFromProfileupdatePage == true) {
       //if from update profile page then load it anyway
+      print('is from profile update page true');
+      setEverythingToDefault();
       fetchData();
     } else {
       //not from profile page. check if data already loaded
@@ -41,6 +50,7 @@ class ProfileService with ChangeNotifier {
   }
 
   fetchData() async {
+    print('fetching profile data');
     var connection = await checkConnection();
     if (connection) {
       //internet connection is on
@@ -60,12 +70,15 @@ class ProfileService with ChangeNotifier {
           await http.get(Uri.parse('$baseApi/user/profile'), headers: header);
 
       if (response.statusCode == 201) {
-        profileDetails = ProfileModel.fromJson(jsonDecode(response.body));
+        var data = ProfileModel.fromJson(jsonDecode(response.body));
+        profileDetails = data;
 
         ordersList.add(profileDetails.pendingOrder);
         ordersList.add(profileDetails.activeOrder);
         ordersList.add(profileDetails.completeOrder);
         ordersList.add(profileDetails.totalOrder);
+
+        print('profile details is $profileDetails');
 
         if (jsonDecode(response.body)['profile_image'] is List) {
           //then dont do anything because it means image is missing from database
