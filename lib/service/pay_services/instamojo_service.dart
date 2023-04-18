@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qixer/view/payments/instamojo_payment_page.dart';
+import 'package:troop/view/payments/instamojo_payment_page.dart';
 
 class InstamojoService {
   payByInstamojo(BuildContext context) {

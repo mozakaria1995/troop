@@ -4,9 +4,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
+// import 'package:mercado_pago_mobile_checkout/mercado_pago_mobile_checkout.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/place_order_service.dart';
+import 'package:troop/service/booking_services/place_order_service.dart';
 
 import '../payment_gateway_list_service.dart';
 
@@ -25,19 +25,19 @@ class MercadoPagoService {
     var result = await getToken(context);
 
     if (result == true) {
-      print('mercado token is $token');
-      var res = await MercadoPagoMobileCheckout.startCheckout(
-        publicKey,
-        token ?? '',
-      );
-      if (res.result == 'done') {
-        Provider.of<PlaceOrderService>(context, listen: false)
-            .makePaymentSuccess(context);
-      } else {
-        print('payment failed');
-        Provider.of<PlaceOrderService>(context, listen: false)
-            .setLoadingFalse();
-      }
+      // print('mercado token is $token');
+      // var res = await MercadoPagoMobileCheckout.startCheckout(
+      //   publicKey,
+      //   token ?? '',
+      // );
+      // if (res.result == 'done') {
+      //   Provider.of<PlaceOrderService>(context, listen: false)
+      //       .makePaymentSuccess(context);
+      // } else {
+      //   print('payment failed');
+      //   Provider.of<PlaceOrderService>(context, listen: false)
+      //       .setLoadingFalse();
+      // }
     } else {
       //token getting failed
     }

@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/all_services_service.dart';
-import 'package:qixer/view/services/service_details_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/all_services_service.dart';
+import 'package:troop/view/services/service_details_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 import '../home/components/service_card.dart';
 
@@ -50,7 +51,7 @@ class ServicesOfUser extends StatelessWidget {
                         title: 'Hair cutting service at low price Hair cutting',
                         sellerName: 'Jane Cooper',
                         price: '30',
-                        buttonText: 'Book Now',
+                        buttonText: 'book now'.tr(),
                         width: double.infinity,
                         marginRight: 0.0,
                         pressed: () {},

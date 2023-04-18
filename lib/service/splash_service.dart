@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/google_sign_service.dart';
-import 'package:qixer/service/auth_services/login_service.dart';
-import 'package:qixer/view/auth/login/login.dart';
-import 'package:qixer/view/intro/introduction_page.dart';
+import 'package:troop/service/auth_services/google_sign_service.dart';
+import 'package:troop/service/auth_services/login_service.dart';
+import 'package:troop/view/auth/login/login.dart';
+import 'package:troop/view/intro/introduction_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../view/utils/responsive.dart';
@@ -19,7 +19,7 @@ class SplashService {
         Navigator.pushReplacement<void, void>(
           context,
           MaterialPageRoute<void>(
-            builder: (BuildContext context) => const IntroductionPage(),
+            builder: (BuildContext context) => const LoginPage(),
           ),
         );
       });

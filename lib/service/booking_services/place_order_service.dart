@@ -3,18 +3,18 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_confirmation_service.dart';
-import 'package:qixer/service/book_steps_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/coupon_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
+import 'package:troop/service/book_confirmation_service.dart';
+import 'package:troop/service/book_steps_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/coupon_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
 
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/service/profile_service.dart';
-import 'package:qixer/view/booking/payment_success_page.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/service/profile_service.dart';
+import 'package:troop/view/booking/payment_success_page.dart';
 
-import 'package:qixer/view/home/landing_page.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/view/home/landing_page.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../common_service.dart';
@@ -112,7 +112,7 @@ class PlaceOrderService with ChangeNotifier {
       }
     }
 
-    var formData;
+    FormData formData;
     var dio = Dio();
     dio.options.headers['Content-Type'] = 'multipart/form-data';
     dio.options.headers['Accept'] = 'application/json';
@@ -120,6 +120,7 @@ class PlaceOrderService with ChangeNotifier {
 
     if (isOnline == 0) {
       print('not online service');
+
       //if it's not online service
       if (imagePath != null) {
         //if manual transfer selected then image upload is mandatory
@@ -133,7 +134,7 @@ class PlaceOrderService with ChangeNotifier {
           'post_code': post,
           'address': address,
           'choose_service_city': city.toString(),
-          'choose_service_area': area.toString(),
+          // 'choose_service_area': area.toString(),
           'choose_service_country': country.toString(),
           'date': selectedDate.toString(),
           'schedule': schedule.toString(),
@@ -147,7 +148,6 @@ class PlaceOrderService with ChangeNotifier {
           'is_service_online': 0,
         });
       } else {
-        //other payment method selected
         formData = FormData.fromMap({
           'service_id': serviceId.toString(),
           'seller_id': sellerId.toString(),
@@ -158,7 +158,7 @@ class PlaceOrderService with ChangeNotifier {
           'post_code': post,
           'address': address,
           'choose_service_city': city.toString(),
-          'choose_service_area': area.toString(),
+          // 'choose_service_area': area.toString(),
           'choose_service_country': country.toString(),
           'date': selectedDate.toString(),
           'schedule': schedule.toString(),
@@ -169,6 +169,8 @@ class PlaceOrderService with ChangeNotifier {
           'selected_payment_gateway': selectedPaymentGateway.toString(),
           'is_service_online': 0,
         });
+        print(formData.fields);        //other payment method selected
+
       }
     } else {
       print('this was an online service');
@@ -241,6 +243,8 @@ class PlaceOrderService with ChangeNotifier {
 
   //make payment successfull
   makePaymentSuccess(BuildContext context) async {
+    setLoadingFalse();
+
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var token = prefs.getString('token');
 

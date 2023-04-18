@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/model/top_service_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/db/db_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/top_service_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/db/db_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -32,6 +32,7 @@ class TopRatedServicesSerivce with ChangeNotifier {
         var response = await http.get(Uri.parse(apiLink));
 
         if (response.statusCode == 201) {
+          print("XXXX"+stateId!);
           var data = TopServiceModel.fromJson(jsonDecode(response.body));
 
           for (int i = 0; i < data.topServices.length; i++) {

@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/logout_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/auth_services/logout_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../../service/auth_services/facebook_login_service.dart';
@@ -82,7 +83,7 @@ class SettingsHelper {
               Text(
                 'Are you sure?',
                 style: TextStyle(color: cc.greyPrimary, fontSize: 17),
-              ),
+              ).tr(),
               const SizedBox(
                 height: 25,
               ),
@@ -104,7 +105,7 @@ class SettingsHelper {
                         GoogleSignInService().logOutFromGoogleLogin();
 
                         //if logged in by facebook then logout from it
-                        FacebookLoginService().logoutFromFacebook();
+                        // FacebookLoginService().logoutFromFacebook();
                       }
                     }, isloading: provider.isloading == false ? false : true)),
                   ),

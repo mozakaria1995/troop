@@ -1,14 +1,15 @@
 import 'dart:convert';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:http/http.dart' as http;
 
 class RtlService with ChangeNotifier {
   /// RTL support
   String direction = 'ltr';
 
-  String currency = '\$';
+  String currency = '\AED'.tr();
   String currencyDirection = 'left';
 
   bool alreadyCurrencyLoaded = false;

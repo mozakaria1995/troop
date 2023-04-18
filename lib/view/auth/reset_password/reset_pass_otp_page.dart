@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/reset_pass_otp_service.dart';
-import 'package:qixer/service/auth_services/reset_password_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/auth_services/reset_pass_otp_service.dart';
+import 'package:troop/service/auth_services/reset_password_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../utils/common_helper.dart';
 import '../../utils/constant_colors.dart';
@@ -36,7 +37,7 @@ class _ResetPassOtpPageState extends State<ResetPassOtpPage> {
         }
       },
       child: Scaffold(
-        appBar: CommonHelper().appbarCommon('Reset password', context, () {
+        appBar: CommonHelper().appbarCommon('Reset password'.tr(), context, () {
           Navigator.pop(context);
         }),
         body: Container(
@@ -55,12 +56,12 @@ class _ResetPassOtpPageState extends State<ResetPassOtpPage> {
                   ),
                 ),
               ),
-              CommonHelper().titleCommon("Enter the 4 digit code"),
+              CommonHelper().titleCommon("Enter the 4 digit code".tr()),
               const SizedBox(
                 height: 13,
               ),
               CommonHelper().paragraphCommon(
-                  'Enter the 4 digit code we sent to to your email in order to reset password',
+                  'Enter the 4 digit code we sent to to your email in order to reset password'.tr(),
                   TextAlign.center),
               const SizedBox(
                 height: 33,
@@ -126,7 +127,7 @@ class _ResetPassOtpPageState extends State<ResetPassOtpPage> {
                                         provider.sendOtp(widget.email, context,
                                             isFromOtpPage: true);
                                       },
-                                    text: 'Send again',
+                                    text: 'Send again'.tr(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,

@@ -13,23 +13,29 @@ String serviceByFilterModelToJson(ServiceByFilterModel data) =>
 class ServiceByFilterModel {
   ServiceByFilterModel({
     required this.allServices,
-    required this.serviceImage,
+     this.serviceImage,
   });
 
   AllServices allServices;
-  List<ServiceImage> serviceImage;
+  List<ServiceImage>? serviceImage;
 
-  factory ServiceByFilterModel.fromJson(Map<String, dynamic> json) =>
-      ServiceByFilterModel(
+  factory ServiceByFilterModel.fromJson(Map<String, dynamic> json) {
+    print(json["service_image"]);
+    return ServiceByFilterModel(
         allServices: AllServices.fromJson(json["all_services"]),
-        serviceImage: List<ServiceImage>.from(
-            json["service_image"].map((x) => ServiceImage.fromJson(x))),
+        serviceImage:List<ServiceImage>.from(
+            json["service_image"].map((x) {
+              print(x);
+              return ServiceImage.fromJson(x);
+            })
+        ),
       );
+  }
 
   Map<String, dynamic> toJson() => {
         "all_services": allServices.toJson(),
         "service_image":
-            List<dynamic>.from(serviceImage.map((x) => x.toJson())),
+            List<dynamic>.from(serviceImage!.map((x) => x.toJson())),
       };
 }
 
@@ -120,7 +126,7 @@ class Datum {
   int? serviceCityId;
   SellerForMobile sellerForMobile;
   List<ReviewsForMobile> reviewsForMobile;
-  ServiceCity serviceCity;
+  ServiceCity? serviceCity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
@@ -133,7 +139,7 @@ class Datum {
         sellerForMobile: SellerForMobile.fromJson(json["seller_for_mobile"]),
         reviewsForMobile: List<ReviewsForMobile>.from(json["reviews_for_mobile"]
             .map((x) => ReviewsForMobile.fromJson(x))),
-        serviceCity: ServiceCity.fromJson(json["service_city"]),
+        serviceCity: json["service_city"]!=null?ServiceCity.fromJson(json["service_city"]):null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -147,7 +153,7 @@ class Datum {
         "seller_for_mobile": sellerForMobile.toJson(),
         "reviews_for_mobile":
             List<dynamic>.from(reviewsForMobile.map((x) => x.toJson())),
-        "service_city": serviceCity.toJson(),
+        "service_city": serviceCity!.toJson(),
       };
 }
 
@@ -281,7 +287,7 @@ class Link {
   bool? active;
 
   factory Link.fromJson(Map<String, dynamic> json) => Link(
-        url: json["url"] == null ? null : json["url"],
+        url: json["url"] ?? null,
         label: json["label"],
         active: json["active"],
       );
@@ -304,13 +310,13 @@ class ServiceImage {
   int? imageId;
   String? path;
   String? imgUrl;
-  dynamic imgAlt;
+  String? imgAlt;
 
   factory ServiceImage.fromJson(Map<String, dynamic> json) => ServiceImage(
         imageId: json["image_id"],
         path: json["path"],
-        imgUrl: json["img_url"],
-        imgAlt: json["img_alt"],
+        imgUrl: json["img_url"]!=null?json["img_url"]:null,
+        imgAlt: json["img_alt"]!=null?json["img_alt"]:null,
       );
 
   Map<String, dynamic> toJson() => {

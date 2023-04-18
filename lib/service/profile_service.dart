@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/model/profile_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/profile_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:qixer/view/auth/signup/components/country_states_dropdowns.dart';
-import 'package:qixer/view/services/components/service_filter_dropdowns.dart';
+import 'package:troop/view/auth/signup/components/country_states_dropdowns.dart';
+import 'package:troop/view/services/components/service_filter_dropdowns.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SearchHelper {

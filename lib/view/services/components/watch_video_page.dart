@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
-// import 'package:qixer/view/utils/common_helper.dart';
-// import 'package:qixer/view/utils/constant_colors.dart';
+// import 'package:troop/view/utils/common_helper.dart';
+// import 'package:troop/view/utils/constant_colors.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 // class WatchVideoPage extends StatelessWidget {

@@ -2,12 +2,13 @@
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/service/service_details_service.dart';
-import 'package:qixer/view/services/components/watch_video_page.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/service/service_details_service.dart';
+import 'package:troop/view/services/components/watch_video_page.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 import '../../utils/constant_styles.dart';
 import '../service_helper.dart';
@@ -23,7 +24,9 @@ class ServiceDetailsTop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<ServiceDetailsService>(
-      builder: (context, provider, child) => Column(
+      builder: (context, provider, child) {
+
+        return Column(
         children: [
           //title author price details
           Container(
@@ -32,7 +35,10 @@ class ServiceDetailsTop extends StatelessWidget {
               ServiceTitleAndUser(
                 cc: cc,
                 title: provider.serviceAllDetails.serviceDetails.title,
-                userImg: provider.serviceAllDetails.serviceSellerImage.imgUrl,
+                userImg:provider.serviceAllDetails.serviceSellerImage!=null?
+        "${provider.serviceAllDetails.serviceSellerImage.imgUrl}"
+
+                :"https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png",
                 userName: provider.serviceAllDetails.serviceSellerName,
                 videoLink: provider.serviceAllDetails.videoUrl,
               ),
@@ -54,7 +60,7 @@ class ServiceDetailsTop extends StatelessWidget {
                             color: cc.greyFour,
                             fontSize: 18,
                             fontWeight: FontWeight.w400),
-                      ),
+                      ).tr(),
                       Consumer<RtlService>(
                         builder: (context, rtlP, child) => Text(
                           rtlP.currencyDirection == 'left'
@@ -105,7 +111,7 @@ class ServiceDetailsTop extends StatelessWidget {
                       width: 5,
                     ),
                     AutoSizeText(
-                      'Orders completed',
+                      'Orders completed'.tr(),
                       maxLines: 1,
                       style: TextStyle(
                           color: cc.greyFour,
@@ -136,7 +142,7 @@ class ServiceDetailsTop extends StatelessWidget {
                     width: 5,
                   ),
                   AutoSizeText(
-                    'Seller Ratings',
+                    'Seller Ratings'.tr(),
                     maxLines: 1,
                     style: TextStyle(
                         color: cc.greyFour,
@@ -148,7 +154,8 @@ class ServiceDetailsTop extends StatelessWidget {
             ]),
           ),
         ],
-      ),
+      );
+      },
     );
   }
 }
@@ -214,6 +221,7 @@ class ServiceTitleAndUser extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100),
                     child: CachedNetworkImage(
                       imageUrl: userImg,
+                      errorWidget: (context,error,url)=>Image.asset('assets/images/placeholder.png'),
                       placeholder: (context, url) {
                         return Image.asset('assets/images/placeholder.png');
                       },

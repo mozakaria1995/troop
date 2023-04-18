@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 import '../utils/common_helper.dart';
 
@@ -64,7 +65,7 @@ class BookingHelper {
 
   bdetailsContainer(String iconLink, String title, String text) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      BookingHelper().rowLeftRight(iconLink, title, ''),
+      BookingHelper().rowLeftRight(iconLink, title.tr(), ''),
       const SizedBox(
         height: 10,
       ),
@@ -108,7 +109,7 @@ class BookingHelper {
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                   ),
-                )
+                ).tr()
               ]),
             ),
 
@@ -147,7 +148,7 @@ class BookingHelper {
               fontSize: 14,
               fontWeight: FontWeight.w400,
             ),
-          ),
+          ).tr(),
         ),
         quantity != 0
             ? Expanded(

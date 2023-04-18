@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/all_services_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
+import 'package:troop/service/all_services_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
 
 import '../../utils/others_helper.dart';
 

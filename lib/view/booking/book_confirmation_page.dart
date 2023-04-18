@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_confirmation_service.dart';
-import 'package:qixer/service/book_steps_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
-import 'package:qixer/view/booking/components/order_details_panel.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/book_confirmation_service.dart';
+import 'package:troop/service/book_steps_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/view/booking/booking_helper.dart';
+import 'package:troop/view/booking/components/order_details_panel.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 import 'components/steps.dart';
@@ -115,7 +115,7 @@ class _BookConfirmationPageState extends State<BookConfirmationPage> {
                                             BookingHelper().bdetailsContainer(
                                                 'assets/svg/location.svg',
                                                 'Location',
-                                                '${locationProvider.selectedArea}, ${locationProvider.selectedState}, ${locationProvider.selectedCountry}, '),
+                                                ' ${locationProvider.selectedState}, ${locationProvider.selectedCountry} '),
                                       ),
 
                                       //divider
@@ -165,10 +165,10 @@ class _BookConfirmationPageState extends State<BookConfirmationPage> {
                               ? Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    BookingHelper().bRow(
-                                        'assets/svg/location.svg',
-                                        'Post Code',
-                                        bookProvider.postCode ?? ''),
+                                    // BookingHelper().bRow(
+                                    //     'assets/svg/location.svg',
+                                    //     'Post Code',
+                                    //     bookProvider.postCode ?? ''),
                                     BookingHelper().bRow(
                                         'assets/svg/location.svg',
                                         'Address',

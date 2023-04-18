@@ -1,5 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:qixer/view/utils/custom_input.dart';
+import 'package:troop/view/utils/custom_input.dart';
 
 import '../../../utils/common_helper.dart';
 
@@ -31,7 +32,7 @@ class EmailNameFields extends StatelessWidget {
             }
             return null;
           },
-          hintText: "Enter your full name",
+          hintText: "Enter your full name".tr(),
           icon: 'assets/icons/user.png',
           textInputAction: TextInputAction.next,
         ),
@@ -50,7 +51,7 @@ class EmailNameFields extends StatelessWidget {
             }
             return null;
           },
-          hintText: "Enter your username",
+          hintText: "Enter your username".tr(),
           icon: 'assets/icons/user.png',
           textInputAction: TextInputAction.next,
         ),
@@ -65,11 +66,11 @@ class EmailNameFields extends StatelessWidget {
           controller: emailController,
           validation: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your email';
+              return 'Please enter your email'.tr();
             }
             return null;
           },
-          hintText: "Enter your email",
+          hintText: "Enter your email".tr(),
           icon: 'assets/icons/email-grey.png',
           textInputAction: TextInputAction.next,
         ),

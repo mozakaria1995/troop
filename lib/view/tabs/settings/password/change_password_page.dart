@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/change_pass_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/auth_services/change_pass_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   const ChangePasswordPage({Key? key}) : super(key: key);
@@ -129,7 +130,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                 focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: ConstantColors().primaryColor)),
-                                hintText: 'Enter current password',
+                                hintText: 'Enter current password'.tr(),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 18)),
                           )),
@@ -201,7 +202,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                 focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: ConstantColors().primaryColor)),
-                                hintText: 'New password',
+                                hintText: 'New password'.tr(),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 18)),
                           )),
@@ -221,7 +222,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             style: const TextStyle(fontSize: 14),
                             validator: (value) {
                               if (value == null || value.isEmpty) {
-                                return 'Please retype your password';
+                                return 'Please retype your password'.tr();
                               }
                               return null;
                             },
@@ -273,7 +274,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                 focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: ConstantColors().primaryColor)),
-                                hintText: 'Retype new password',
+                                hintText: 'Retype new password'.tr(),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 18)),
                           )),

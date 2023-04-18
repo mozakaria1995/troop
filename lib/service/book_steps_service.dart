@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
@@ -31,11 +32,11 @@ class BookStepsService with ChangeNotifier {
   }
 
   List<StepsAndNext> stepsNameList = [
-    StepsAndNext("Service Personalization", 'Available Schedules'),
-    StepsAndNext("Available Schedules", 'Choose Location'),
-    StepsAndNext("Choose Location", 'Informations'),
-    StepsAndNext("Informations", 'Booking Confirmations'),
-    StepsAndNext("Booking Confirmations", ''),
+    StepsAndNext("Service Personalization".tr(), 'Available Schedules'.tr()),
+    StepsAndNext("Available Schedules".tr(), 'Choose Location'.tr()),
+    StepsAndNext("Choose Location".tr(), 'Informations'.tr()),
+    StepsAndNext("Informations".tr(), 'Booking Confirmations'.tr()),
+    StepsAndNext("Booking Confirmations".tr(), ''),
   ];
 
   decreaseStep(BuildContext context, {int decreaseBy = 1}) {

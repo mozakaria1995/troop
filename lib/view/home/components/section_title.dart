@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/constant_colors.dart';
@@ -8,11 +9,13 @@ class SectionTitle extends StatelessWidget {
     required this.cc,
     required this.title,
     required this.pressed,
+    required this.asProvider,
   }) : super(key: key);
 
   final ConstantColors cc;
   final String title;
   final VoidCallback pressed;
+  final asProvider;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class SectionTitle extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  "See all",
+                  asProvider.getString('See all'.tr()),
                   style: TextStyle(
                     color: cc.primaryColor,
                     fontSize: 15,

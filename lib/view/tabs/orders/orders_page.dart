@@ -1,15 +1,16 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/my_orders_service.dart';
-import 'package:qixer/service/order_details_service.dart';
-import 'package:qixer/service/rtl_service.dart';
+import 'package:troop/service/my_orders_service.dart';
+import 'package:troop/service/order_details_service.dart';
+import 'package:troop/service/rtl_service.dart';
 
-import 'package:qixer/view/tabs/orders/order_details_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/view/tabs/orders/order_details_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import 'orders_helper.dart';
 
@@ -164,7 +165,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                     children: [
                                                       OrdersHelper().orderRow(
                                                         'assets/svg/calendar.svg',
-                                                        'Date',
+                                                        'Date'.tr(),
                                                         provider
                                                             .myServices[i].date,
                                                       ),
@@ -185,7 +186,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                     children: [
                                                       OrdersHelper().orderRow(
                                                         'assets/svg/clock.svg',
-                                                        'Schedule',
+                                                        'Schedule'.tr(),
                                                         provider.myServices[i]
                                                             .schedule,
                                                       ),
@@ -204,7 +205,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                               builder: (context, rtlP, child) =>
                                                   OrdersHelper().orderRow(
                                                 'assets/svg/bill.svg',
-                                                'Billed',
+                                                'Billed'.tr(),
                                                 rtlP.currencyDirection == 'left'
                                                     ? '${rtlP.currency}${provider.myServices[i].total.toStringAsFixed(2)}'
                                                     : '${provider.myServices[i].total.toStringAsFixed(2)}${rtlP.currency}',

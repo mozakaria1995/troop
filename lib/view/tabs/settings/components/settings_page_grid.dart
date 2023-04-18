@@ -1,9 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutterzilla_fixed_grid/flutterzilla_fixed_grid.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/profile_service.dart';
+import 'package:troop/service/profile_service.dart';
 
 import '../../../utils/common_helper.dart';
 import '../../../utils/constant_colors.dart';
@@ -55,7 +56,7 @@ class SettingsPageGrid extends StatelessWidget {
                       height: 3,
                     ),
                     AutoSizeText(
-                      SettingsHelper().cardContent[index].text,
+                      SettingsHelper().cardContent[index].text.tr(),
                       maxLines: 1,
                       style: TextStyle(
                         color: cc.greyParagraph,

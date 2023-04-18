@@ -1,7 +1,7 @@
 // import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
-// import 'package:qixer/view/home/components/service_card.dart';
-// import 'package:qixer/view/utils/constant_colors.dart';
+// import 'package:troop/view/home/components/service_card.dart';
+// import 'package:troop/view/utils/constant_colors.dart';
 
 // class SearchPage extends StatefulWidget {
 //   const SearchPage({

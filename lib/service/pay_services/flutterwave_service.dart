@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterwave_standard/flutterwave.dart';
 import 'package:flutterwave_standard/models/subaccount.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/place_order_service.dart';
-import 'package:qixer/service/payment_gateway_list_service.dart';
+import 'package:troop/service/booking_services/place_order_service.dart';
+import 'package:troop/service/payment_gateway_list_service.dart';
 import 'package:uuid/uuid.dart';
 
 class FlutterwaveService {

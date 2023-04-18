@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/service_details_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/service_details_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common_service.dart';

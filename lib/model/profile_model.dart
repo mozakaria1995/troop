@@ -83,7 +83,7 @@ class UserDetails {
         phone: json["phone"],
         address: json["address"],
         about: json["about"],
-        countryId: json["country_id"],
+        // countryId: json["country_id"],
         serviceCity: json["service_city"],
         serviceArea: json["service_area"],
         postCode: json["post_code"],
@@ -119,21 +119,18 @@ class Area {
     this.serviceArea,
     this.serviceCityId,
     this.countryId,
-    this.status,
   });
 
   int? id;
   String? serviceArea;
   int? serviceCityId;
   int? countryId;
-  int? status;
 
   factory Area.fromJson(Map<String?, dynamic>? json) => Area(
         id: json?["id"],
         serviceArea: json?["service_area"],
         serviceCityId: json?["service_city_id"],
         countryId: json?["country_id"],
-        status: json?["status"],
       );
 
   Map<String?, dynamic>? toJson() => {
@@ -141,7 +138,6 @@ class Area {
         "service_area": serviceArea,
         "service_city_id": serviceCityId,
         "country_id": countryId,
-        "status": status,
       };
 }
 
@@ -158,12 +154,14 @@ class City {
   int? countryId;
   int? status;
 
-  factory City.fromJson(Map<String?, dynamic>? json) => City(
+  factory City.fromJson(Map<String?, dynamic>? json) {
+    return City(
         id: json?["id"],
         serviceCity: json?["service_city"],
-        countryId: json?["country_id"],
-        status: json?["status"],
+
+       countryId: json?["country_id"]!=null?json!["country_id"]:null,
       );
+  }
 
   Map<String?, dynamic>? toJson() => {
         "id": id,
@@ -185,9 +183,8 @@ class Country {
   int? status;
 
   factory Country.fromJson(Map<String?, dynamic>? json) => Country(
-        id: json?["id"],
-        country: json?["country"],
-        status: json?["status"],
+    id: json?["id"]!=null?json!["id"]:null,
+    country: json?["country"]!=null?json!["country"]:null,
       );
 
   Map<String?, dynamic>? toJson() => {

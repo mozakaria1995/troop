@@ -1,16 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/facebook_login_service.dart';
-import 'package:qixer/service/auth_services/google_sign_service.dart';
-import 'package:qixer/service/auth_services/login_service.dart';
-import 'package:qixer/view/auth/login/login_helper.dart';
-import 'package:qixer/view/auth/reset_password/reset_pass_email_page.dart';
-import 'package:qixer/view/auth/signup/signup.dart';
-import 'package:qixer/view/home/landing_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/custom_input.dart';
+import 'package:troop/service/auth_services/facebook_login_service.dart';
+import 'package:troop/service/auth_services/google_sign_service.dart';
+import 'package:troop/service/auth_services/login_service.dart';
+import 'package:troop/view/auth/login/login_helper.dart';
+import 'package:troop/view/auth/reset_password/reset_pass_email_page.dart';
+import 'package:troop/view/auth/signup/signup.dart';
+import 'package:troop/view/home/landing_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/custom_input.dart';
 import '../../utils/constant_styles.dart';
 
 class LoginPage extends StatefulWidget {
@@ -135,11 +136,11 @@ class _LoginPageState extends State<LoginPage> {
                         controller: emailController,
                         validation: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your email'.tr();
                           }
                           return null;
                         },
-                        hintText: "Email",
+                        hintText: "Email".tr(),
                         icon: 'assets/icons/user.png',
                         textInputAction: TextInputAction.next,
                       ),
@@ -213,7 +214,7 @@ class _LoginPageState extends State<LoginPage> {
                                 focusedErrorBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: ConstantColors().primaryColor)),
-                                hintText: 'Enter password',
+                                hintText: 'Enter password'.tr(),
                                 contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 8, vertical: 18)),
                           )),
@@ -230,14 +231,14 @@ class _LoginPageState extends State<LoginPage> {
                               contentPadding: const EdgeInsets.all(0),
                               title: Container(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
+                                     EdgeInsets.symmetric(vertical: 5),
                                 child: Text(
                                   "Remember me",
                                   style: TextStyle(
                                       color: ConstantColors().greyFour,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14),
-                                ),
+                                ).tr(),
                               ),
                               value: keepLoggedIn,
                               onChanged: (newValue) {
@@ -269,7 +270,7 @@ class _LoginPageState extends State<LoginPage> {
                                     color: cc.primaryColor,
                                     fontSize: 13,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).tr(),
                             ),
                           )
                         ],
@@ -313,7 +314,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           RichText(
                             text: TextSpan(
-                              text: 'Don\'t have account?  ',
+                              text: 'Do not have an account'.tr(),
                               style: const TextStyle(
                                   color: Color(0xff646464), fontSize: 14),
                               children: <TextSpan>[
@@ -326,7 +327,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 builder: (context) =>
                                                     const SignupPage()));
                                       },
-                                    text: 'Register',
+                                    text: " "+'Register'.tr(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
@@ -339,72 +340,72 @@ class _LoginPageState extends State<LoginPage> {
                       ),
 
                       // Divider (or)
-                      const SizedBox(
-                        height: 30,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Expanded(
-                              child: Container(
-                            height: 1,
-                            color: cc.greyFive,
-                          )),
-                          Container(
-                            width: 40,
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.only(bottom: 25),
-                            child: Text(
-                              "OR",
-                              style: TextStyle(
-                                  color: cc.greyPrimary,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w600),
-                            ),
-                          ),
-                          Expanded(
-                              child: Container(
-                            height: 1,
-                            color: cc.greyFive,
-                          )),
-                        ],
-                      ),
+                      // const SizedBox(
+                      //   height: 30,
+                      // ),
+                      // Row(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   crossAxisAlignment: CrossAxisAlignment.center,
+                      //   children: [
+                      //     Expanded(
+                      //         child: Container(
+                      //       height: 1,
+                      //       color: cc.greyFive,
+                      //     )),
+                      //     Container(
+                      //       width: 40,
+                      //       alignment: Alignment.center,
+                      //       margin: const EdgeInsets.only(bottom: 25),
+                      //       child: Text(
+                      //         "OR",
+                      //         style: TextStyle(
+                      //             color: cc.greyPrimary,
+                      //             fontSize: 17,
+                      //             fontWeight: FontWeight.w600),
+                      //       ),
+                      //     ),
+                      //     Expanded(
+                      //         child: Container(
+                      //       height: 1,
+                      //       color: cc.greyFive,
+                      //     )),
+                      //   ],
+                      // ),
 
                       // login with google, facebook button ===========>
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Consumer<GoogleSignInService>(
-                        builder: (context, gProvider, child) => InkWell(
-                            onTap: () {
-                              if (gProvider.isloading == false) {
-                                gProvider.googleLogin(context);
-                              }
-                            },
-                            child: LoginHelper().commonButton(
-                                'assets/icons/google.png', "Login with Google",
-                                isloading: gProvider.isloading == false
-                                    ? false
-                                    : true)),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Consumer<FacebookLoginService>(
-                        builder: (context, fProvider, child) => InkWell(
-                          onTap: () {
-                            if (fProvider.isloading == false) {
-                              fProvider.checkIfLoggedIn(context);
-                            }
-                          },
-                          child: LoginHelper().commonButton(
-                              'assets/icons/facebook.png',
-                              "Login with Facebook",
-                              isloading:
-                                  fProvider.isloading == false ? false : true),
-                        ),
-                      ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      // Consumer<GoogleSignInService>(
+                      //   builder: (context, gProvider, child) => InkWell(
+                      //       onTap: () {
+                      //         if (gProvider.isloading == false) {
+                      //           gProvider.googleLogin(context);
+                      //         }
+                      //       },
+                      //       child: LoginHelper().commonButton(
+                      //           'assets/icons/google.png', "Login with Google",
+                      //           isloading: gProvider.isloading == false
+                      //               ? false
+                      //               : true)),
+                      // ),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
+                      // Consumer<FacebookLoginService>(
+                      //   builder: (context, fProvider, child) => InkWell(
+                      //     onTap: () {
+                      //       if (fProvider.isloading == false) {
+                      //         fProvider.checkIfLoggedIn(context);
+                      //       }
+                      //     },
+                      //     child: LoginHelper().commonButton(
+                      //         'assets/icons/facebook.png',
+                      //         "Login with Facebook",
+                      //         isloading:
+                      //             fProvider.isloading == false ? false : true),
+                      //   ),
+                      // ),
 
                       const SizedBox(
                         height: 30,

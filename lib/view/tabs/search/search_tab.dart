@@ -1,12 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/view/home/components/search_bar.dart';
-import 'package:qixer/view/search/components/search_bar.dart';
-import 'package:qixer/view/search/search_bar_page_with_dropdown.dart';
-import 'package:qixer/view/home/components/service_card.dart';
-import 'package:qixer/view/services/service_details_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/view/home/components/search_bar.dart';
+import 'package:troop/view/search/components/search_bar.dart';
+import 'package:troop/view/search/search_bar_page_with_dropdown.dart';
+import 'package:troop/view/home/components/service_card.dart';
+import 'package:troop/view/services/service_details_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 class SearchTab extends StatefulWidget {
   const SearchTab({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class _SearchTabState extends State<SearchTab> {
                       const SizedBox(
                         height: 25,
                       ),
-                      CommonHelper().titleCommon('Search services'),
+                      CommonHelper().titleCommon('Search services'.tr()),
                       sizedBox20(),
                       //Search input field ============>
                       // SearchBar(

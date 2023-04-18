@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_confirmation_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/book_confirmation_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/booking/booking_helper.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 class PaymentSuccessPage extends StatefulWidget {
   const PaymentSuccessPage({Key? key, required this.paymentStatus})
@@ -74,7 +75,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
                                 color: cc.successColor,
                                 size: 85,
                               ),
-                              const SizedBox(
+                               SizedBox(
                                 height: 7,
                               ),
                               Text(
@@ -83,7 +84,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
                                     color: cc.greyFour,
                                     fontSize: 21,
                                     fontWeight: FontWeight.w600),
-                              ),
+                              ).tr(),
 
                               //Date and Time =================>
                               pProvider.isOnline == 0
@@ -268,7 +269,7 @@ class _PaymentSuccessPageState extends State<PaymentSuccessPage> {
                                     width: 30,
                                   ),
                                   BookingHelper().colorCapsule(
-                                      'Order status', 'Pending', cc.yellowColor)
+                                      'Order status'.tr(), 'Pending'.tr(), cc.yellowColor)
                                 ],
                               ),
                               const SizedBox(

@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/service/auth_services/signup_service.dart';
-import 'package:qixer/view/auth/signup/components/country_states_dropdowns.dart';
-import 'package:qixer/view/auth/signup/signup_helper.dart';
-import 'package:qixer/view/home/landing_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/service/auth_services/signup_service.dart';
+import 'package:troop/view/auth/signup/components/country_states_dropdowns.dart';
+import 'package:troop/view/auth/signup/signup_helper.dart';
+import 'package:troop/view/home/landing_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class SignupCountryStates extends StatefulWidget {
   const SignupCountryStates({
@@ -52,14 +53,14 @@ class _SignupCountryStatesState extends State<SignupCountryStates> {
               activeColor: ConstantColors().primaryColor,
               contentPadding: const EdgeInsets.all(0),
               title: Container(
-                padding: const EdgeInsets.symmetric(vertical: 5),
+                padding:  EdgeInsets.symmetric(vertical: 5),
                 child: Text(
-                  "I agree with the terms and conditons",
+                  "I agree with the terms and conditions",
                   style: TextStyle(
                       color: ConstantColors().greyFour,
                       fontWeight: FontWeight.w400,
                       fontSize: 14),
-                ),
+                ).tr(),
               ),
               value: termsAgree,
               onChanged: (newValue) {
@@ -78,7 +79,7 @@ class _SignupCountryStatesState extends State<SignupCountryStates> {
                   CommonHelper().buttonOrange("Sign Up", () {
                 if (termsAgree == false) {
                   OthersHelper().showToast(
-                      'You must agree with the terms and conditions to register',
+                      'You must agree with the terms and conditions to register'.tr(),
                       Colors.black);
                 } else {
                   if (provider.isloading == false) {

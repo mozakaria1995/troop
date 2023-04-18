@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 class Included extends StatelessWidget {
   const Included({
@@ -40,7 +40,10 @@ class Included extends StatelessWidget {
                 Row(
                   children: [
                     Consumer<RtlService>(
-                      builder: (context, rtlP, child) => Text(
+                      builder: (context, rtlP, child) {
+                        print(rtlP.currency);
+
+                        return Text(
                         rtlP.currencyDirection == 'left'
                             ? '${rtlP.currency}${data[i]['price']} x'
                             : '${data[i]['price']}${rtlP.currency} x',
@@ -49,7 +52,8 @@ class Included extends StatelessWidget {
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      );
+                      },
                     ),
                     const SizedBox(
                       width: 7,

@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/view/services/services_of_user.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/view/services/services_of_user.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 import '../service_helper.dart';
 
@@ -28,18 +28,18 @@ class AboutSellerTab extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               ClipRRect(
                 borderRadius: BorderRadius.circular(6),
-                child: CachedNetworkImage(
-                  imageUrl:
-                      provider.serviceAllDetails.serviceSellerImage.imgUrl,
+                child: provider.serviceAllDetails.serviceSellerImage!=null?CachedNetworkImage(
+                  imageUrl: "${provider.serviceAllDetails.serviceSellerImage.imgUrl}",
                   placeholder: (context, url) {
                     return Image.asset('assets/images/placeholder.png');
                   },
                   height: 60,
                   width: 60,
                   fit: BoxFit.cover,
-                ),
+                ):Container(),
               ),
               const SizedBox(
                 width: 10,
@@ -98,7 +98,7 @@ class AboutSellerTab extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ServiceHelper().serviceDetails(
-                        'From', provider.serviceAllDetails.sellerFrom),
+                        'From', provider.serviceAllDetails.sellerFrom??""),
                   ),
                   Expanded(
                       child: ServiceHelper().serviceDetails(

@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/model/service_by_filter_model.dart';
-import 'package:qixer/model/sub_category_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/db/db_service.dart';
-import 'package:qixer/service/home_services/category_service.dart';
+import 'package:troop/model/service_by_filter_model.dart';
+import 'package:troop/model/sub_category_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/db/db_service.dart';
+import 'package:troop/service/home_services/category_service.dart';
 import 'package:http/http.dart' as http;
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class AllServicesService with ChangeNotifier {
   bool isLoading = true;
@@ -248,6 +248,7 @@ class AllServicesService with ChangeNotifier {
           "$baseApi/service-list/category-subcategory-rating-sort-by-search/?cat=$selectedCategoryId&subcat=$selectedSubcatId&rating=$selectedRatingId&sortby=$selectedSortbyId&page=$currentPage"));
 
       if (response.statusCode == 201) {
+
         var data = ServiceByFilterModel.fromJson(jsonDecode(response.body));
 
         setTotalPage(data.allServices.lastPage);
@@ -255,8 +256,8 @@ class AllServicesService with ChangeNotifier {
         for (int i = 0; i < data.allServices.data.length; i++) {
           var serviceImage;
 
-          if (data.serviceImage.length > i) {
-            serviceImage = data.serviceImage[i].imgUrl;
+          if (data.serviceImage!.length > i) {
+            serviceImage = data.serviceImage![i].imgUrl;
           } else {
             serviceImage = null;
           }

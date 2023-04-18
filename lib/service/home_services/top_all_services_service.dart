@@ -2,12 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/model/service_by_filter_model.dart';
-import 'package:qixer/model/top_all_services_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/db/db_service.dart';
+import 'package:troop/model/service_by_filter_model.dart';
+import 'package:troop/model/top_all_services_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/db/db_service.dart';
 import 'package:http/http.dart' as http;
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class TopAllServicesService with ChangeNotifier {
   bool isLoading = true;

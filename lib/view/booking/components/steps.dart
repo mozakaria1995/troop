@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_steps_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/book_steps_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../utils/common_helper.dart';
@@ -86,7 +87,7 @@ class Steps extends StatelessWidget {
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
                                   ),
-                                ),
+                                ).tr(),
                                 const SizedBox(
                                   width: 5,
                                 ),

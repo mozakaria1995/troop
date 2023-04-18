@@ -1,14 +1,15 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:qixer/service/support_ticket/support_ticket_service.dart';
-import 'package:qixer/view/tabs/orders/orders_helper.dart';
-import 'package:qixer/view/tabs/settings/supports/create_ticket_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/responsive.dart';
+import 'package:troop/service/support_ticket/support_ticket_service.dart';
+import 'package:troop/view/tabs/orders/orders_helper.dart';
+import 'package:troop/view/tabs/settings/supports/create_ticket_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/responsive.dart';
 
 class MyTicketsPage extends StatefulWidget {
   const MyTicketsPage({Key? key}) : super(key: key);
@@ -40,7 +41,7 @@ class _MyTicketsPageState extends State<MyTicketsPage> {
                 color: cc.greyPrimary,
                 fontSize: 16,
                 fontWeight: FontWeight.w600),
-          ),
+          ).tr(),
           backgroundColor: Colors.transparent,
           elevation: 0,
           leading: InkWell(
@@ -76,8 +77,8 @@ class _MyTicketsPageState extends State<MyTicketsPage> {
                     decoration: BoxDecoration(
                         color: cc.primaryColor,
                         borderRadius: BorderRadius.circular(8)),
-                    child: const AutoSizeText(
-                      'Create',
+                    child:  AutoSizeText(
+                      'Create'.tr(),
                       maxLines: 1,
                       style: TextStyle(
                         color: Colors.white,

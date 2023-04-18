@@ -1,10 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
-import 'package:qixer/view/services/components/desc_from_html.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/view/services/components/desc_from_html.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 import '../service_helper.dart';
 
@@ -14,18 +15,13 @@ class OverviewTab extends StatelessWidget {
   final provider;
   @override
   Widget build(BuildContext context) {
+    print("ziko");
+
     ConstantColors cc = ConstantColors();
     return Container(
       margin: const EdgeInsets.only(top: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        // Text(
-        //   provider.serviceAllDetails.serviceDetails.description,
-        //   style: TextStyle(
-        //     color: cc.greyParagraph,
-        //     fontSize: 14,
-        //     height: 1.4,
-        //   ),
-        // ),
+
         DescInHtml(
           desc: provider.serviceAllDetails.serviceDetails.description,
         ),
@@ -33,7 +29,7 @@ class OverviewTab extends StatelessWidget {
           height: 20,
         ),
         AutoSizeText(
-          'Benefits of the premium package:',
+          'Benefits of the premium package:'.tr(),
           maxLines: 1,
           style: TextStyle(
               color: cc.greyFour, fontSize: 19, fontWeight: FontWeight.bold),
@@ -44,9 +40,12 @@ class OverviewTab extends StatelessWidget {
         ),
         for (int i = 0;
             i < provider.serviceAllDetails.serviceBenifits.length;
-            i++)
+
+
+        i++)
           ServiceHelper().checkListCommon(
-              provider.serviceAllDetails.serviceBenifits[i].benifits),
+              provider.serviceAllDetails.serviceBenifits[i].benifits??""),
+
 
         //FAQ ===============>
         (provider.serviceAllDetails.serviceDetails.serviceFaq).isNotEmpty
@@ -57,7 +56,7 @@ class OverviewTab extends StatelessWidget {
                     height: 15,
                   ),
                   AutoSizeText(
-                    'FAQ:',
+                    'FAQ:'.tr(),
                     maxLines: 1,
                     style: TextStyle(
                         color: cc.greyFour,
@@ -82,18 +81,18 @@ class OverviewTab extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Flexible(
-                              child: Text(
-                                provider.serviceAllDetails.serviceDetails
-                                    .serviceFaq[i].title,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: cc.greyFour,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                            ),
+                            // Flexible(
+                            //   child: Text(
+                            //     provider.serviceAllDetails.serviceDetails
+                            //         .serviceFaq[i].title,
+                            //     maxLines: 1,
+                            //     overflow: TextOverflow.ellipsis,
+                            //     style: TextStyle(
+                            //         color: cc.greyFour,
+                            //         fontSize: 16,
+                            //         fontWeight: FontWeight.w600),
+                            //   ),
+                            // ),
                             Container(
                               margin: const EdgeInsets.only(left: 10),
                               child: Icon(

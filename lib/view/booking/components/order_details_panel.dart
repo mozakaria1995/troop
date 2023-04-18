@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_confirmation_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/coupon_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
-import 'package:qixer/view/booking/payment_choose_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/book_confirmation_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/coupon_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/view/booking/booking_helper.dart';
+import 'package:troop/view/booking/payment_choose_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 import '../../utils/constant_colors.dart';
 
@@ -70,7 +71,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                   children: [
                     bcProvider.isPanelOpened == false
                         ? Text(
-                            'Swipe up for details',
+                            'Swipe up for details'.tr(),
                             style: TextStyle(
                               color: cc.primaryColor,
                               fontSize: 14,
@@ -84,7 +85,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                               fontSize: 14,
                               fontWeight: FontWeight.w400,
                             ),
-                          ),
+                          ).tr(),
                     bcProvider.isPanelOpened == false
                         ? Icon(
                             Icons.keyboard_arrow_up_rounded,
@@ -223,7 +224,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
 
                                       //total of extras
                                       BookingHelper().detailsPanelRow(
-                                          'Extra Service Fee',
+                                          'Extra Service Fee'.tr(),
                                           0,
                                           bcProvider
                                               .extrasTotalPrice(
@@ -258,16 +259,16 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                                           : Container(),
 
                                       //tax
-                                      BookingHelper().detailsPanelRow(
-                                          'Tax(+) ${pProvider.tax}%',
-                                          0,
-                                          bcProvider
-                                              .calculateTax(
-                                                pProvider.tax,
-                                                pProvider.includedList,
-                                                pProvider.extrasList,
-                                              )
-                                              .toString()),
+                                      // BookingHelper().detailsPanelRow(
+                                      //     'Tax(+) ${pProvider.tax}%',
+                                      //     0,
+                                      //     bcProvider
+                                      //         .calculateTax(
+                                      //           pProvider.tax,
+                                      //           pProvider.includedList,
+                                      //           pProvider.extrasList,
+                                      //         )
+                                      //         .toString()),
                                       Container(
                                         margin: const EdgeInsets.only(
                                             top: 15, bottom: 12),
@@ -280,7 +281,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                                         builder:
                                             (context, couponService, child) =>
                                                 BookingHelper().detailsPanelRow(
-                                                    'Coupon',
+                                                    'Coupon'.tr(),
                                                     0,
                                                     couponService.couponDiscount
                                                         .toString()),
@@ -354,7 +355,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                                                       focusedErrorBorder: OutlineInputBorder(
                                                           borderSide: BorderSide(
                                                               color: ConstantColors().primaryColor)),
-                                                      hintText: 'Enter coupon code',
+                                                      hintText: 'Enter coupon code'.tr(),
                                                       contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18)),
                                                 )),
                                           ),
@@ -363,7 +364,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                                                 const EdgeInsets.only(left: 15),
                                             width: 100,
                                             child: CommonHelper().buttonOrange(
-                                                'Apply', () {
+                                                'Apply'.tr(), () {
                                               if (couponController
                                                   .text.isNotEmpty) {
                                                 if (couponProvider.isloading ==
@@ -431,7 +432,7 @@ class _OrderDetailsPanelState extends State<OrderDetailsPanel>
                               //     : Container(),
                               Expanded(
                                 child: CommonHelper()
-                                    .buttonOrange('Proceed to payment', () {
+                                    .buttonOrange('Proceed to payment'.tr(), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(

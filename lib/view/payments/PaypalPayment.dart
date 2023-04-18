@@ -1,8 +1,8 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_confirmation_service.dart';
-import 'package:qixer/service/pay_services/paypal_service.dart';
+import 'package:troop/service/book_confirmation_service.dart';
+import 'package:troop/service/pay_services/paypal_service.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class PaypalPayment extends StatefulWidget {
@@ -68,7 +68,7 @@ class PaypalPaymentState extends State<PaypalPayment> {
           ),
         );
         // ignore: deprecated_member_use
-        _scaffoldKey.currentState!.showSnackBar(snackBar);
+        // _scaffoldKey.currentState.showsn(snackBar);
       }
     });
   }

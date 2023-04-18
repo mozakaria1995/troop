@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../service/book_steps_service.dart';
 
@@ -19,7 +20,7 @@ class CommonHelper {
         title,
         style: TextStyle(
             color: cc.greyPrimary, fontSize: 16, fontWeight: FontWeight.w600),
-      ),
+      ).tr(),
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: InkWell(
@@ -41,7 +42,7 @@ class CommonHelper {
         title,
         style: TextStyle(
             color: cc.greyPrimary, fontSize: 16, fontWeight: FontWeight.w600),
-      ),
+      ).tr(),
       backgroundColor: Colors.transparent,
       elevation: 0,
       leading: InkWell(
@@ -83,7 +84,7 @@ class CommonHelper {
                     color: Colors.white,
                     fontSize: 14,
                   ),
-                )
+                ).tr()
               : OthersHelper().showLoading(Colors.white)),
     );
   }
@@ -104,7 +105,7 @@ class CommonHelper {
               color: cc.primaryColor,
               fontSize: 14,
             ),
-          )),
+          ).tr()),
     );
   }
 
@@ -118,7 +119,7 @@ class CommonHelper {
           fontSize: 14,
           fontWeight: FontWeight.w600,
         ),
-      ),
+      ).tr(),
     );
   }
 
@@ -132,7 +133,7 @@ class CommonHelper {
         fontSize: 14,
         fontWeight: FontWeight.w400,
       ),
-    );
+    ).tr();
   }
 
   titleCommon(String title) {
@@ -140,7 +141,7 @@ class CommonHelper {
       title,
       style: TextStyle(
           color: cc.greyPrimary, fontSize: 18, fontWeight: FontWeight.bold),
-    );
+    ).tr();
   }
 
   dividerCommon() {
@@ -197,7 +198,7 @@ class CommonHelper {
             Text(
               title,
               style: TextStyle(color: cc.greyFour),
-            ),
+            ).tr(),
           ],
         ));
   }

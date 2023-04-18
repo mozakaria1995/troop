@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:qixer/model/service_details_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/service_details_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class ServiceDetailsService with ChangeNotifier {
   var serviceAllDetails;
@@ -39,7 +39,9 @@ class ServiceDetailsService with ChangeNotifier {
           Uri.parse('$baseApi/service-details/$serviceId'),
           headers: header);
 
+
       if (response.statusCode == 201) {
+        print(serviceId);
         // serviceAllDetails =
         //     ServiceDetailsModel.fromJson(jsonDecode(response.body));
         var data = ServiceDetailsModel.fromJson(jsonDecode(response.body));

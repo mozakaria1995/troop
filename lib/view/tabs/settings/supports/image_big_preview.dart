@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import 'package:qixer/view/utils/responsive.dart';
+import 'package:troop/view/utils/responsive.dart';
 
 class ImageBigPreviewPage extends StatelessWidget {
   const ImageBigPreviewPage({Key? key, this.networkImgLink, this.assetImgLink})

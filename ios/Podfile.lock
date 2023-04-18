@@ -1,9 +1,9 @@
 PODS:
-  - AppAuth (1.5.0):
-    - AppAuth/Core (= 1.5.0)
-    - AppAuth/ExternalUserAgent (= 1.5.0)
-  - AppAuth/Core (1.5.0)
-  - AppAuth/ExternalUserAgent (1.5.0):
+  - AppAuth (1.6.0):
+    - AppAuth/Core (= 1.6.0)
+    - AppAuth/ExternalUserAgent (= 1.6.0)
+  - AppAuth/Core (1.6.0)
+  - AppAuth/ExternalUserAgent (1.6.0):
     - AppAuth/Core
   - audio_session (0.0.1):
     - Flutter
@@ -12,44 +12,40 @@ PODS:
   - connectivity (0.0.1):
     - Flutter
     - Reachability
-  - FBAEMKit (13.2.0):
-    - FBSDKCoreKit_Basics (= 13.2.0)
-  - FBSDKCoreKit (13.2.0):
-    - FBAEMKit (= 13.2.0)
-    - FBSDKCoreKit_Basics (= 13.2.0)
-  - FBSDKCoreKit_Basics (13.2.0)
-  - FBSDKLoginKit (13.2.0):
-    - FBSDKCoreKit (= 13.2.0)
-  - Firebase/Auth (8.15.0):
+  - FBAEMKit (14.1.0):
+    - FBSDKCoreKit_Basics (= 14.1.0)
+  - FBSDKCoreKit (14.1.0):
+    - FBAEMKit (= 14.1.0)
+    - FBSDKCoreKit_Basics (= 14.1.0)
+  - FBSDKCoreKit_Basics (14.1.0)
+  - FBSDKLoginKit (14.1.0):
+    - FBSDKCoreKit (= 14.1.0)
+  - Firebase/Auth (10.3.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 8.15.0)
-  - Firebase/CoreOnly (8.15.0):
-    - FirebaseCore (= 8.15.0)
-  - firebase_auth (3.3.15):
-    - Firebase/Auth (= 8.15.0)
+    - FirebaseAuth (~> 10.3.0)
+  - Firebase/CoreOnly (10.3.0):
+    - FirebaseCore (= 10.3.0)
+  - firebase_auth (4.2.9):
+    - Firebase/Auth (= 10.3.0)
     - firebase_core
     - Flutter
-  - firebase_core (1.15.0):
-    - Firebase/CoreOnly (= 8.15.0)
+  - firebase_core (2.7.0):
+    - Firebase/CoreOnly (= 10.3.0)
     - Flutter
-  - FirebaseAuth (8.15.0):
-    - FirebaseCore (~> 8.0)
-    - GoogleUtilities/AppDelegateSwizzler (~> 7.7)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - FirebaseCore (8.15.0):
-    - FirebaseCoreDiagnostics (~> 8.0)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-  - FirebaseCoreDiagnostics (8.15.0):
-    - GoogleDataTransport (~> 9.1)
-    - GoogleUtilities/Environment (~> 7.7)
-    - GoogleUtilities/Logger (~> 7.7)
-    - nanopb (~> 2.30908.0)
+  - FirebaseAuth (10.3.0):
+    - FirebaseCore (~> 10.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GTMSessionFetcher/Core (< 4.0, >= 2.1)
+  - FirebaseCore (10.3.0):
+    - FirebaseCoreInternal (~> 10.0)
+    - GoogleUtilities/Environment (~> 7.8)
+    - GoogleUtilities/Logger (~> 7.8)
+  - FirebaseCoreInternal (10.4.0):
+    - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - Flutter (1.0.0)
-  - flutter_facebook_auth (4.3.0):
-    - FBSDKCoreKit (~> 13)
-    - FBSDKLoginKit (~> 13)
+  - flutter_facebook_auth (4.4.1):
+    - FBSDKLoginKit (= 14.1.0)
     - Flutter
   - flutter_inappwebview (0.0.1):
     - Flutter
@@ -66,219 +62,84 @@ PODS:
   - FMDB (2.7.5):
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
-  - FXBlurView (1.6.4)
   - google_sign_in_ios (0.0.1):
     - Flutter
-    - GoogleSignIn (~> 5.0)
-  - GoogleDataTransport (9.1.4):
-    - GoogleUtilities/Environment (~> 7.7)
-    - nanopb (< 2.30910.0, >= 2.30908.0)
-    - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleSignIn (5.0.2):
-    - AppAuth (~> 1.2)
-    - GTMAppAuth (~> 1.0)
-    - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleUtilities/AppDelegateSwizzler (7.7.0):
+    - GoogleSignIn (~> 6.2)
+  - GoogleSignIn (6.2.4):
+    - AppAuth (~> 1.5)
+    - GTMAppAuth (~> 1.3)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.1)
+  - GoogleUtilities/AppDelegateSwizzler (7.11.0):
     - GoogleUtilities/Environment
     - GoogleUtilities/Logger
     - GoogleUtilities/Network
-  - GoogleUtilities/Environment (7.7.0):
+  - GoogleUtilities/Environment (7.11.0):
     - PromisesObjC (< 3.0, >= 1.2)
-  - GoogleUtilities/Logger (7.7.0):
+  - GoogleUtilities/Logger (7.11.0):
     - GoogleUtilities/Environment
-  - GoogleUtilities/Network (7.7.0):
+  - GoogleUtilities/Network (7.11.0):
     - GoogleUtilities/Logger
     - "GoogleUtilities/NSData+zlib"
     - GoogleUtilities/Reachability
-  - "GoogleUtilities/NSData+zlib (7.7.0)"
-  - GoogleUtilities/Reachability (7.7.0):
+  - "GoogleUtilities/NSData+zlib (7.11.0)"
+  - GoogleUtilities/Reachability (7.11.0):
     - GoogleUtilities/Logger
-  - GTMAppAuth (1.3.0):
-    - AppAuth/Core (~> 1.4)
-    - GTMSessionFetcher/Core (~> 1.5)
-  - GTMSessionFetcher/Core (1.7.2)
+  - GTMAppAuth (1.3.1):
+    - AppAuth/Core (~> 1.6)
+    - GTMSessionFetcher/Core (< 3.0, >= 1.5)
+  - GTMSessionFetcher/Core (2.3.0)
   - image_picker_ios (0.0.1):
     - Flutter
-  - JRSwizzle (1.0)
   - just_audio (0.0.1):
     - Flutter
-  - mercado_pago_mobile_checkout (0.0.1):
-    - Flutter
-    - MercadoPagoSDK (~> 4.32.4)
-    - MLCardDrawer (= 1.5.1)
-    - MLCardForm (= 0.9.1)
-  - MercadoPagoSDK (4.32.4):
-    - MercadoPagoSDK/Default (= 4.32.4)
-    - MLBusinessComponents (~> 1.0)
-    - MLCardForm (~> 0.1)
-  - MercadoPagoSDK/Default (4.32.4):
-    - MLBusinessComponents (~> 1.0)
-    - MLCardDrawer (~> 1.0)
-    - MLCardForm (~> 0.1)
-    - MLUI (~> 5.0)
-  - MLBusinessComponents (1.42.0):
-    - MLBusinessComponents/Default (= 1.42.0)
-    - MLUI (~> 5.0)
-  - MLBusinessComponents/Default (1.42.0):
-    - MLUI (~> 5.0)
-  - MLCardDrawer (1.5.1):
-    - MLCardDrawer/Default (= 1.5.1)
-  - MLCardDrawer/Default (1.5.1)
-  - MLCardForm (0.9.1):
-    - MLCardDrawer (~> 1.0)
-    - MLCardForm/Default (= 0.9.1)
-    - MLUI (~> 5.0)
-  - MLCardForm/Default (0.9.1):
-    - MLCardDrawer (~> 1.0)
-    - MLUI (~> 5.0)
-  - MLUI (5.25.0):
-    - MLUI/ActionButton (= 5.25.0)
-    - MLUI/Core (= 5.25.0)
-    - MLUI/Helpers (= 5.25.0)
-    - MLUI/MLButton (= 5.25.0)
-    - MLUI/MLCheckBox (= 5.25.0)
-    - MLUI/MLColorPalette (= 5.25.0)
-    - MLUI/MLContextualMenu (= 5.25.0)
-    - MLUI/MLFonts (= 5.25.0)
-    - MLUI/MLFullscreenModal (= 5.25.0)
-    - MLUI/MLGenericErrorView (= 5.25.0)
-    - MLUI/MLHeader (= 5.25.0)
-    - MLUI/MLHtml (= 5.25.0)
-    - MLUI/MLModal (= 5.25.0)
-    - MLUI/MLRadioButton (= 5.25.0)
-    - MLUI/MLSnackBar (= 5.25.0)
-    - MLUI/MLSpacing (= 5.25.0)
-    - MLUI/MLSpinner (= 5.25.0)
-    - MLUI/MLSwitch (= 5.25.0)
-    - MLUI/MLTextView (= 5.25.0)
-    - MLUI/MLTitledMultiLineTextField (= 5.25.0)
-    - MLUI/MLTitledSingleLineTextField (= 5.25.0)
-    - MLUI/PriceView (= 5.25.0)
-    - MLUI/SnackBarView (= 5.25.0)
-    - MLUI/StyleSheet (= 5.25.0)
-  - MLUI/ActionButton (5.25.0):
-    - MLUI/Core
-  - MLUI/Core (5.25.0):
-    - MLUI/MLFonts
-  - MLUI/Helpers (5.25.0)
-  - MLUI/MLButton (5.25.0):
-    - MLUI/Core
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/MLSpinner
-    - MLUI/StyleSheet
-  - MLUI/MLCheckBox (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/StyleSheet
-  - MLUI/MLColorPalette (5.25.0)
-  - MLUI/MLContextualMenu (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-  - MLUI/MLFonts (5.25.0):
-    - JRSwizzle (= 1.0)
-    - MLUI/Helpers
-    - MLUI/StyleSheet
-  - MLUI/MLFullscreenModal (5.25.0):
-    - FXBlurView (~> 1.6)
-    - MLUI/Core
-    - MLUI/MLButton
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/MLHeader
-    - MLUI/StyleSheet
-  - MLUI/MLGenericErrorView (5.25.0):
-    - MLUI/MLButton
-    - MLUI/MLColorPalette
-    - MLUI/MLSpacing
-  - MLUI/MLHeader (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/StyleSheet
-  - MLUI/MLHtml (5.25.0):
-    - MLUI/MLFonts
-  - MLUI/MLModal (5.25.0):
-    - FXBlurView (~> 1.6)
-    - MLUI/Core
-    - MLUI/MLButton
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/StyleSheet
-  - MLUI/MLRadioButton (5.25.0):
-    - MLUI/StyleSheet
-  - MLUI/MLSnackBar (5.25.0):
-    - MLUI/Helpers
-    - MLUI/MLButton
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-  - MLUI/MLSpacing (5.25.0):
-    - JRSwizzle (= 1.0)
-    - MLUI/MLFonts
-  - MLUI/MLSpinner (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/StyleSheet
-  - MLUI/MLSwitch (5.25.0):
-    - MLUI/Helpers
-    - MLUI/MLColorPalette
-  - MLUI/MLTextView (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-  - MLUI/MLTitledMultiLineTextField (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/MLTitledSingleLineTextField
-    - MLUI/StyleSheet
-  - MLUI/MLTitledSingleLineTextField (5.25.0):
-    - MLUI/MLColorPalette
-    - MLUI/MLFonts
-    - MLUI/StyleSheet
-  - MLUI/PriceView (5.25.0):
-    - MLUI/Core
-    - MLUI/MLFonts
-  - MLUI/SnackBarView (5.25.0):
-    - MLUI/Helpers
-    - MLUI/MLFonts
-  - MLUI/StyleSheet (5.25.0)
-  - nanopb (2.30908.0):
-    - nanopb/decode (= 2.30908.0)
-    - nanopb/encode (= 2.30908.0)
-  - nanopb/decode (2.30908.0)
-  - nanopb/encode (2.30908.0)
+  - NWWebSocket (0.5.2)
   - OrderedSet (5.0.0)
-  - path_provider_ios (0.0.1):
+  - package_info_plus (0.4.5):
     - Flutter
-  - PromisesObjC (2.1.0)
-  - razorpay-pod (1.2.5)
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - PromisesObjC (2.1.1)
+  - pusher_channels_flutter (0.0.1):
+    - Flutter
+    - PusherSwift (~> 10.1.1)
+  - PusherSwift (10.1.2):
+    - NWWebSocket (~> 0.5.2)
+    - TweetNacl (~> 1.0.0)
+  - razorpay-pod (1.3.0)
   - razorpay_flutter (1.1.10):
     - Flutter
     - razorpay-pod
   - Reachability (3.2)
-  - shared_preferences_ios (0.0.1):
+  - shared_preferences_foundation (0.0.1):
     - Flutter
+    - FlutterMacOS
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
-  - Stripe (22.0.0):
-    - Stripe/Stripe3DS2 (= 22.0.0)
-    - StripeApplePay (= 22.0.0)
-    - StripeCore (= 22.0.0)
-    - StripeUICore (= 22.0.0)
-  - Stripe/Stripe3DS2 (22.0.0):
-    - StripeApplePay (= 22.0.0)
-    - StripeCore (= 22.0.0)
-    - StripeUICore (= 22.0.0)
+  - Stripe (22.5.1):
+    - Stripe/Stripe3DS2 (= 22.5.1)
+    - StripeApplePay (= 22.5.1)
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
+  - Stripe/Stripe3DS2 (22.5.1):
+    - StripeApplePay (= 22.5.1)
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
   - stripe_ios (0.0.1):
     - Flutter
-    - Stripe (~> 22.0.0)
-    - StripeConnections (~> 22.0.0)
-  - StripeApplePay (22.0.0):
-    - StripeCore (= 22.0.0)
-  - StripeConnections (22.0.0):
-    - StripeCore (= 22.0.0)
-    - StripeUICore (= 22.0.0)
-  - StripeCore (22.0.0)
-  - StripeUICore (22.0.0):
-    - StripeCore (= 22.0.0)
+    - Stripe (~> 22.5.1)
+    - StripeFinancialConnections (~> 22.5.1)
+  - StripeApplePay (22.5.1):
+    - StripeCore (= 22.5.1)
+  - StripeCore (22.5.1)
+  - StripeFinancialConnections (22.5.1):
+    - StripeCore (= 22.5.1)
+    - StripeUICore (= 22.5.1)
+  - StripeUICore (22.5.1):
+    - StripeCore (= 22.5.1)
   - Toast (4.0.0)
+  - TweetNacl (1.0.2)
   - url_launcher_ios (0.0.1):
     - Flutter
   - video_player_avfoundation (0.0.1):
@@ -302,10 +163,11 @@ DEPENDENCIES:
   - google_sign_in_ios (from `.symlinks/plugins/google_sign_in_ios/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
-  - mercado_pago_mobile_checkout (from `.symlinks/plugins/mercado_pago_mobile_checkout/ios`)
-  - path_provider_ios (from `.symlinks/plugins/path_provider_ios/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - pusher_channels_flutter (from `.symlinks/plugins/pusher_channels_flutter/ios`)
   - razorpay_flutter (from `.symlinks/plugins/razorpay_flutter/ios`)
-  - shared_preferences_ios (from `.symlinks/plugins/shared_preferences_ios/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - stripe_ios (from `.symlinks/plugins/stripe_ios/ios`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
@@ -323,31 +185,25 @@ SPEC REPOS:
     - Firebase
     - FirebaseAuth
     - FirebaseCore
-    - FirebaseCoreDiagnostics
+    - FirebaseCoreInternal
     - FMDB
-    - FXBlurView
-    - GoogleDataTransport
     - GoogleSignIn
     - GoogleUtilities
     - GTMAppAuth
     - GTMSessionFetcher
-    - JRSwizzle
-    - MercadoPagoSDK
-    - MLBusinessComponents
-    - MLCardDrawer
-    - MLCardForm
-    - MLUI
-    - nanopb
+    - NWWebSocket
     - OrderedSet
     - PromisesObjC
+    - PusherSwift
     - razorpay-pod
     - Reachability
     - Stripe
     - StripeApplePay
-    - StripeConnections
     - StripeCore
+    - StripeFinancialConnections
     - StripeUICore
     - Toast
+    - TweetNacl
 
 EXTERNAL SOURCES:
   audio_session:
@@ -376,14 +232,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_picker_ios/ios"
   just_audio:
     :path: ".symlinks/plugins/just_audio/ios"
-  mercado_pago_mobile_checkout:
-    :path: ".symlinks/plugins/mercado_pago_mobile_checkout/ios"
-  path_provider_ios:
-    :path: ".symlinks/plugins/path_provider_ios/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/ios"
+  pusher_channels_flutter:
+    :path: ".symlinks/plugins/pusher_channels_flutter/ios"
   razorpay_flutter:
     :path: ".symlinks/plugins/razorpay_flutter/ios"
-  shared_preferences_ios:
-    :path: ".symlinks/plugins/shared_preferences_ios/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
   stripe_ios:
@@ -398,63 +256,58 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
 SPEC CHECKSUMS:
-  AppAuth: 80317d99ac7ff2801a2f18ff86b48cd315ed465d
+  AppAuth: 8fca6b5563a5baef2c04bee27538025e4ceb2add
   audio_session: 4f3e461722055d21515cf3261b64c973c062f345
   cashfree_pg: 4d216897f5b81020f5be03de34363d4539600b07
   connectivity: c4130b2985d4ef6fd26f9702e886bd5260681467
-  FBAEMKit: c2b2895363b7e57192013d1dc49fdf498b28624c
-  FBSDKCoreKit: 58139803d861e72c7661dc875611a759352a55ac
-  FBSDKCoreKit_Basics: 1ffc68326a5ece051d85574f02a0adcf27c2a5f2
-  FBSDKLoginKit: 19e2a878556c2ee4f20486dc406e582783cd7578
-  Firebase: 5f8193dff4b5b7c5d5ef72ae54bb76c08e2b841d
-  firebase_auth: 0624c0e2e1c0732209286f99cdacfe2b985a3c61
-  firebase_core: fa19947d8db1c0a62d8872c45039b3113829cd2e
-  FirebaseAuth: 3e73bf8abf4fbb40f8b421f361f4cc48ee57388c
-  FirebaseCore: 5743c5785c074a794d35f2fff7ecc254a91e08b1
-  FirebaseCoreDiagnostics: 92e07a649aeb66352b319d43bdd2ee3942af84cb
-  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
-  flutter_facebook_auth: a030aef1c2552fdc7cb090acc716ac836e3bb63c
+  FBAEMKit: a899515e45476027f73aef377b5cffadcd56ca3a
+  FBSDKCoreKit: 24f8bc8d3b5b2a8c5c656a1329492a12e8efa792
+  FBSDKCoreKit_Basics: 6e578c9bdc7aa1365dbbbde633c9ebb536bcaa98
+  FBSDKLoginKit: 787de205d524c3a4b17d527916f1d066e4361660
+  Firebase: f92fc551ead69c94168d36c2b26188263860acd9
+  firebase_auth: 4e8c693e848ed13b263de2d702d55fa82ed04a79
+  firebase_core: 128d8c43c3a453a4a67463314fc3761bedff860b
+  FirebaseAuth: 0e415d29d846c1dce2fb641e46f35e9888d9bec6
+  FirebaseCore: 988754646ab3bd4bdcb740f1bfe26b9f6c0d5f2a
+  FirebaseCoreInternal: e301297f4c15a17489e48ed722d733b1578e0c02
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_facebook_auth: 361ac7a57263ebf327f26089507ead0d66558ee8
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
   flutter_paystack: 50021637b71e7712780744f69d2843e71b65175d
-  fluttertoast: 16fbe6039d06a763f3533670197d01fc73459037
+  fluttertoast: eb263d302cc92e04176c053d2385237e9f43fad0
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
-  FXBlurView: db786c2561cb49a09ae98407f52460096ab8a44f
-  google_sign_in_ios: ed71c0dbddfba8b1ea9aa210dbda695f46bf51bd
-  GoogleDataTransport: 5fffe35792f8b96ec8d6775f5eccd83c998d5a3b
-  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
-  GoogleUtilities: e0913149f6b0625b553d70dae12b49fc62914fd1
-  GTMAppAuth: 4d8f864896f3646f0c33baf38a28362f4c601e15
-  GTMSessionFetcher: 5595ec75acf5be50814f81e9189490412bad82ba
-  image_picker_ios: b786a5dcf033a8336a657191401bfdf12017dabb
-  JRSwizzle: dd5ead5d913a0f29e7f558200165849f006bb1e3
+  google_sign_in_ios: 1256ff9d941db546373826966720b0c24804bcdd
+  GoogleSignIn: 5651ce3a61e56ca864160e79b484cd9ed3f49b7a
+  GoogleUtilities: c2bdc4cf2ce786c4d2e6b3bcfd599a25ca78f06f
+  GTMAppAuth: 0ff230db599948a9ad7470ca667337803b3fc4dd
+  GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
+  image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
-  mercado_pago_mobile_checkout: 3d11d35a55b87bbc6ccc2c240b7d98344a6b73e2
-  MercadoPagoSDK: 634fc8a9fe7f99f4d73506659c68cdbb885407fc
-  MLBusinessComponents: 39bd62b9cd3d194968c58e5c4cf590b2342259e3
-  MLCardDrawer: 2ae367238699c790a143b14c8280ad75495f6fee
-  MLCardForm: 150fe3caf0f986340431f3e8d863b771ee2dfab1
-  MLUI: db4e5bb3aae6884212dcf1213d76b65c5cd26464
-  nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
+  NWWebSocket: 21f0c73639815da3272862c912275b26102aa80c
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
-  path_provider_ios: 14f3d2fd28c4fdb42f44e0f751d12861c43cee02
-  PromisesObjC: 99b6f43f9e1044bd87a95a60beff28c2c44ddb72
-  razorpay-pod: aa2df076ea44baab6cc8296c1ccc715fe2ca818c
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
+  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
+  PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  pusher_channels_flutter: bf646336659d2cc058c62346b4b9e8b82e37b71b
+  PusherSwift: fb30ba1dcbe09a6ca257ccb39dc2f84866e811b4
+  razorpay-pod: ebc78907f756ace307e3fa4270ff684ebb9e291b
   razorpay_flutter: 84b3bfd206ae9c9c2a9ba585524a1b3d8102b6c1
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
-  shared_preferences_ios: 548a61f8053b9b8a49ac19c1ffbc8b92c50d68ad
+  shared_preferences_foundation: 986fc17f3d3251412d18b0265f9c64113a8c2472
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
-  Stripe: ee32e594fa4dee4bdf2a8a3039f7fb07a21075dc
-  stripe_ios: 4ae5942d4f2f383c2be5c187e6e4e4f31e29c0a5
-  StripeApplePay: e09964f3e2c6b318e53a05c12f3cb7efc592484d
-  StripeConnections: d3068bf688679a51932abb94d956d8a73c213bd7
-  StripeCore: 689b9605ccb78e507f59ddc5e677615e0af16583
-  StripeUICore: f5fe5ad283e132b40077b5eb85b625ebf7de034a
+  Stripe: 2b2decd03146e08a350960966d41f3028c2eac29
+  stripe_ios: e94186250816de030881ced3399154eab186e439
+  StripeApplePay: b14f06ac6fc24b56704c1e598149ed0cc45e166f
+  StripeCore: 4833738f2ca4336712f279f3c2867a0a7eb67c93
+  StripeFinancialConnections: 982115b82af429968d8aa78d329a42ed7ba3feab
+  StripeUICore: 08c1efbd7e3c54ee7fa74334a37a1d4c08ba944d
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
-  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
-  video_player_avfoundation: e489aac24ef5cf7af82702979ed16f2a5ef84cff
+  TweetNacl: 3abf4d1d2082b0114e7a67410e300892448951e6
+  url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4
+  video_player_avfoundation: 81e49bb3d9fb63dccf9fa0f6d877dc3ddbeac126
   wakelock: d0fc7c864128eac40eba1617cb5264d9c940b46f
   webview_flutter_wkwebview: b7e70ef1ddded7e69c796c7390ee74180182971f
 
-PODFILE CHECKSUM: 159dfc4237c36acbec58d1afd6c2bd09ff23ed50
+PODFILE CHECKSUM: fdb508f9ba352db184aa17d256f81ea5df71c84c
 
 COCOAPODS: 1.11.3

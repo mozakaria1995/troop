@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:qixer/view/auth/login/login.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/view/auth/login/login.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 class SignupHelper {
   ConstantColors cc = ConstantColors();
@@ -12,7 +13,7 @@ class SignupHelper {
       children: [
         RichText(
           text: TextSpan(
-            text: 'Have an account?  ',
+            text: 'Have an account?  '.tr(),
             style: const TextStyle(color: Color(0xff646464), fontSize: 14),
             children: <TextSpan>[
               TextSpan(
@@ -39,7 +40,7 @@ class SignupHelper {
   //
   phoneFieldDecoration() {
     return InputDecoration(
-        labelText: 'Phone Number',
+        labelText: 'Phone Number'.tr(),
         // hintTextDirection: TextDirection.rtl,
 
         labelStyle: TextStyle(color: cc.greyFour, fontSize: 14),

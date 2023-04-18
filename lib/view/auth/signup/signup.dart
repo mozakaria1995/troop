@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/signup_service.dart';
-import 'package:qixer/view/auth/signup/pages/signup_country_states.dart';
-import 'package:qixer/view/auth/signup/pages/signup_email_name.dart';
-import 'package:qixer/view/auth/signup/pages/signup_phone_pass.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/service/auth_services/signup_service.dart';
+import 'package:troop/view/auth/signup/pages/signup_country_states.dart';
+import 'package:troop/view/auth/signup/pages/signup_email_name.dart';
+import 'package:troop/view/auth/signup/pages/signup_phone_pass.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);

@@ -1,48 +1,40 @@
 {
   "project_info": {
-    "project_number": "205042334936",
-    "project_id": "qixer-20a27",
-    "storage_bucket": "qixer-20a27.appspot.com"
+    "project_number": "1092945259930",
+    "project_id": "troop-f6b3a",
+    "storage_bucket": "troop-f6b3a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:205042334936:android:84d64efbd3bc34fd4b2bad",
+        "mobilesdk_app_id": "1:1092945259930:android:82f04866c2653781ce9e23",
         "android_client_info": {
-          "package_name": "com.qixer.app"
+          "package_name": "com.troopandroid.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "205042334936-va974l9n1n63nv5jjuih7gqmquvith3d.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.qixer.app",
-            "certificate_hash": "6bcce48d491e775a0596cc33bba731e29833a5ca"
-          }
-        },
-        {
-          "client_id": "205042334936-ap9ippue4v404nvuf5k1slpftbcctmt2.apps.googleusercontent.com",
+          "client_id": "1092945259930-nabi437kmai0fe4nhmr76mtvbb7uu1q3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAd-_-eqI_IR05HuJ1giH14pw-lJSMUYXM"
+          "current_key": "AIzaSyAcJp6nskfY1kLb71__y38L5WYlppzF5Go"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "205042334936-ap9ippue4v404nvuf5k1slpftbcctmt2.apps.googleusercontent.com",
+              "client_id": "1092945259930-nabi437kmai0fe4nhmr76mtvbb7uu1q3.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "205042334936-3ddg5c7d76negb1idlqm1ofcf416bo88.apps.googleusercontent.com",
+              "client_id": "1092945259930-e4f5qjj99bjdltv8gj9sbfdgi7odt69s.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.qixerios.app"
+                "bundle_id": "com.troopios.app"
               }
             }
           ]

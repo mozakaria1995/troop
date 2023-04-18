@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:qixer/view/booking/payment_choose_page.dart';
+import 'package:troop/view/booking/payment_choose_page.dart';
 
 import '../../utils/common_helper.dart';
 import '../../utils/constant_colors.dart';

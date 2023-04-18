@@ -1,6 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:qixer/service/common_service.dart';
+import 'package:troop/service/common_service.dart';
 
 import '../utils/constant_colors.dart';
 
@@ -33,7 +34,7 @@ class BottomNav extends StatelessWidget {
                   color: currentIndex == 0 ? cc.primaryColor : cc.greyFour,
                   semanticsLabel: 'Acme Logo'),
             ),
-            label: 'Home',
+            label: 'Home'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -42,7 +43,7 @@ class BottomNav extends StatelessWidget {
                   color: currentIndex == 1 ? cc.primaryColor : cc.greyFour,
                   semanticsLabel: 'Acme Logo'),
             ),
-            label: 'Orders',
+            label: 'Orders'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -51,7 +52,7 @@ class BottomNav extends StatelessWidget {
                   color: currentIndex == 2 ? cc.primaryColor : cc.greyFour,
                   semanticsLabel: 'Acme Logo'),
             ),
-            label: 'Saved',
+            label: 'Saved'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -60,7 +61,7 @@ class BottomNav extends StatelessWidget {
                   color: currentIndex == 3 ? cc.primaryColor : cc.greyFour,
                   semanticsLabel: 'Acme Logo'),
             ),
-            label: 'Search',
+            label: 'Search'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -69,7 +70,7 @@ class BottomNav extends StatelessWidget {
                   color: currentIndex == 4 ? cc.primaryColor : cc.greyFour,
                   semanticsLabel: 'Acme Logo'),
             ),
-            label: 'Settings',
+            label: 'Settings'.tr(),
           ),
         ],
       ),

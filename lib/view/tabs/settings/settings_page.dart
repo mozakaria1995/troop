@@ -1,28 +1,32 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/facebook_login_service.dart';
-import 'package:qixer/service/auth_services/google_sign_service.dart';
-import 'package:qixer/service/profile_service.dart';
-import 'package:qixer/view/tabs/settings/components/settings_page_grid.dart';
-import 'package:qixer/view/tabs/settings/password/change_password_page.dart';
-import 'package:qixer/view/tabs/settings/profile_edit.dart';
-import 'package:qixer/view/tabs/settings/settings_helper.dart';
-import 'package:qixer/view/tabs/settings/supports/my_tickets_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:troop/service/profile_service.dart';
+import 'package:troop/view/tabs/settings/components/settings_page_grid.dart';
+import 'package:troop/view/tabs/settings/password/change_password_page.dart';
+import 'package:troop/view/tabs/settings/profile_edit.dart';
+import 'package:troop/view/tabs/settings/settings_helper.dart';
+import 'package:troop/view/tabs/settings/supports/my_tickets_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
+import '../../../main.dart';
 import '../../booking/booking_helper.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
+
   @override
   void initState() {
     super.initState();
@@ -30,6 +34,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+
     ConstantColors cc = ConstantColors();
 
     return Scaffold(
@@ -148,43 +153,43 @@ class _SettingsPageState extends State<SettingsPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     CommonHelper()
-                                        .titleCommon('Personal informations'),
+                                        .titleCommon('Personal informations'.tr()),
                                     const SizedBox(
                                       height: 25,
                                     ),
                                     BookingHelper().bRow(
                                         'null',
-                                        'Email',
+                                        'Email'.tr(),
                                         profileProvider.profileDetails
                                                 .userDetails.email ??
                                             ''),
                                     BookingHelper().bRow(
                                         'null',
-                                        'City',
+                                        'City'.tr(),
                                         profileProvider.profileDetails
                                                 .userDetails.city.serviceCity ??
                                             ''),
                                     BookingHelper().bRow(
                                         'null',
-                                        'Area',
+                                        'Area'.tr(),
                                         profileProvider.profileDetails
                                                 .userDetails.area.serviceArea ??
                                             ''),
                                     BookingHelper().bRow(
                                         'null',
-                                        'Country',
+                                        'Country'.tr()  ,
                                         profileProvider.profileDetails
                                                 .userDetails.country.country ??
                                             ''),
+                                    // BookingHelper().bRow(
+                                    //     'null',
+                                    //     'Post Code'.tr(),
+                                    //     profileProvider.profileDetails
+                                    //             .userDetails.postCode ??
+                                    //         ''),
                                     BookingHelper().bRow(
                                         'null',
-                                        'Post Code',
-                                        profileProvider.profileDetails
-                                                .userDetails.postCode ??
-                                            ''),
-                                    BookingHelper().bRow(
-                                        'null',
-                                        'Address',
+                                        'Address'.tr(),
                                         profileProvider.profileDetails
                                                 .userDetails.address ??
                                             '',
@@ -201,7 +206,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               child: Column(children: [
                                 SettingsHelper().settingOption(
                                     'assets/svg/message-circle.svg',
-                                    'Support Ticket', () {
+                                    'Support Ticket'.tr(), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(
@@ -213,7 +218,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 CommonHelper().dividerCommon(),
                                 SettingsHelper().settingOption(
                                     'assets/svg/profile-edit.svg',
-                                    'Edit Profile', () {
+                                    'Edit Profile'.tr(), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(
@@ -225,7 +230,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                 CommonHelper().dividerCommon(),
                                 SettingsHelper().settingOption(
                                     'assets/svg/lock-circle.svg',
-                                    'Change Password', () {
+                                    'Change Password'.tr(), () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute<void>(
@@ -234,6 +239,33 @@ class _SettingsPageState extends State<SettingsPage> {
                                     ),
                                   );
                                 }),
+                                CommonHelper().dividerCommon(),
+                                Padding(
+                                  padding: const EdgeInsets.all(16.0,),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text("Change Language").tr(),
+                                      ToggleSwitch(
+                                        activeBgColor: [cc.primaryColor,],
+                                        inactiveBgColor: cc.secondaryColor,
+                                        initialLabelIndex:localStorage.getInt("selectedLang")??0,
+                                        totalSwitches: 2,
+                                        labels: ['English'.tr(), 'Arabic'.tr()],
+                                        onToggle: (index) async{
+                                          localStorage.setInt("selectedLang", index!);
+
+                                          if(index==0){
+
+                                            context.setLocale(Locale('en'));
+                                          }else{
+                                            context.setLocale(Locale('ar'));
+                                          }
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                )
                               ]),
                             ),
 
@@ -244,7 +276,7 @@ class _SettingsPageState extends State<SettingsPage> {
                                   const EdgeInsets.symmetric(horizontal: 10),
                               child: Column(children: [
                                 SettingsHelper().settingOption(
-                                    'assets/svg/logout-circle.svg', 'Logout',
+                                    'assets/svg/logout-circle.svg', 'Logout'.tr(),
                                     () {
                                   SettingsHelper().logoutPopup(context);
                                 }),

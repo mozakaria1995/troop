@@ -120,7 +120,7 @@ class Datum {
   int? serviceCityId;
   SellerForMobile sellerForMobile;
   List<ReviewsForMobile> reviewsForMobile;
-  ServiceCity serviceCity;
+  ServiceCity? serviceCity;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
         id: json["id"],
@@ -133,7 +133,7 @@ class Datum {
         sellerForMobile: SellerForMobile.fromJson(json["seller_for_mobile"]),
         reviewsForMobile: List<ReviewsForMobile>.from(json["reviews_for_mobile"]
             .map((x) => ReviewsForMobile.fromJson(x))),
-        serviceCity: ServiceCity.fromJson(json["service_city"]),
+        serviceCity: json["service_city"]!=null?ServiceCity.fromJson(json["service_city"]):null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -147,7 +147,7 @@ class Datum {
         "seller_for_mobile": sellerForMobile.toJson(),
         "reviews_for_mobile":
             List<dynamic>.from(reviewsForMobile.map((x) => x.toJson())),
-        "service_city": serviceCity.toJson(),
+        "service_city": serviceCity!.toJson(),
       };
 }
 

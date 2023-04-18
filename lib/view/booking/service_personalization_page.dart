@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/booking_services/shedule_service.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/view/booking/components/extras.dart';
-import 'package:qixer/view/booking/delivery_address_page.dart.dart';
-import 'package:qixer/view/booking/service_schedule_page.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/booking_services/shedule_service.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/view/booking/components/extras.dart';
+import 'package:troop/view/booking/delivery_address_page.dart.dart';
+import 'package:troop/view/booking/service_schedule_page.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../service/book_steps_service.dart';
 import 'booking_helper.dart';
@@ -128,15 +128,15 @@ class _ServicePersonalizationPageState
                       child: OthersHelper().showLoading(cc.primaryColor),
                     )),
         ),
-        bottomSheet: Consumer<BookService>(
+        bottomNavigationBar: Consumer<BookService>(
           builder: (context, provider, child) =>
               Consumer<PersonalizationService>(
             builder: (context, personalizationProvider, child) => Container(
-              height: 157,
               padding: EdgeInsets.only(
                   left: screenPadding, top: 30, right: screenPadding),
               decoration: BookingHelper().bottomSheetDecoration(),
               child: Column(
+                 mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BookingHelper()

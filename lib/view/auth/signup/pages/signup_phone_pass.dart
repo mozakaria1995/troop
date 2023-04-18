@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/signup_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/auth/reset_password/reset_pass_otp_page.dart';
-import 'package:qixer/view/auth/signup/signup_helper.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/auth_services/signup_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/auth/reset_password/reset_pass_otp_page.dart';
+import 'package:troop/view/auth/signup/signup_helper.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class SignupPhonePass extends StatefulWidget {
   const SignupPhonePass(
@@ -48,7 +49,7 @@ class _SignupPhonePassState extends State<SignupPhonePass> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //Phone number field
-              CommonHelper().labelCommon("Phone"),
+              CommonHelper().labelCommon("Phone".tr()),
               Consumer<RtlService>(
                 builder: (context, rtlP, child) => IntlPhoneField(
                   decoration: SignupHelper().phoneFieldDecoration(),
@@ -133,7 +134,7 @@ class _SignupPhonePassState extends State<SignupPhonePass> {
                         focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ConstantColors().primaryColor)),
-                        hintText: 'Enter password',
+                        hintText: 'Enter password'.tr(),
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 18)),
                   )),
@@ -204,7 +205,7 @@ class _SignupPhonePassState extends State<SignupPhonePass> {
                         focusedErrorBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: ConstantColors().primaryColor)),
-                        hintText: 'Enter password',
+                        hintText: 'Enter password'.tr(),
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 18)),
                   )),
@@ -214,14 +215,14 @@ class _SignupPhonePassState extends State<SignupPhonePass> {
                 height: 13,
               ),
 
-              CommonHelper().buttonOrange("Continue", () {
+              CommonHelper().buttonOrange("Continue".tr(), () {
                 if (widget.passController.text !=
                     widget.repeatPassController.text) {
                   OthersHelper()
                       .showToast('Password didn\'t match', Colors.black);
                 } else if (widget.passController.text.length < 6) {
                   OthersHelper().showToast(
-                      'Password must be at least 6 characters', Colors.black);
+                      'Password must be at least 6 characters'.tr(), Colors.black);
                 } else if (_formKey.currentState!.validate()) {
                   provider.pagecontroller.animateToPage(
                       provider.selectedPage + 1,

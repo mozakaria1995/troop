@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 class OthersHelper with ChangeNotifier {
   ConstantColors cc = ConstantColors();
@@ -56,8 +56,9 @@ class OthersHelper with ChangeNotifier {
         fontSize: 16.0);
   }
 }
+//https://bytesed.com/laravel/qixer/api/v1
 
-String baseApi = 'https://bytesed.com/laravel/qixer/api/v1';
+String baseApi = 'https://troop.ae/api/v1';
 
 List colors = [
   const Color(0xffFF6B2C),

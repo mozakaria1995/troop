@@ -1,9 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/order_details_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/order_details_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 import '../../booking/booking_helper.dart';
 import '../../utils/others_helper.dart';
@@ -89,24 +90,24 @@ class _OrdersDetailsPageState extends State<OrderDetailsPage> {
                                               provider.orderDetails
                                                   .sellerDetails.phone),
                                         ),
-                                        provider.orderDetails.isOrderOnline == 0
-                                            ? Container(
-                                                child: BookingHelper().bRow(
-                                                    'null',
-                                                    'Post code',
-                                                    provider
-                                                        .orderDetails
-                                                        .sellerDetails
-                                                        .postCode),
-                                              )
-                                            : Container(),
+                                        // provider.orderDetails.isOrderOnline == 0
+                                        //     ? Container(
+                                        //         child: BookingHelper().bRow(
+                                        //             'null',
+                                        //             'Post code',
+                                        //             provider
+                                        //                 .orderDetails
+                                        //                 .sellerDetails
+                                        //                 .postCode??""),
+                                        //       )
+                                        //     : Container(),
                                         provider.orderDetails.isOrderOnline == 0
                                             ? Container(
                                                 child: BookingHelper().bRow(
                                                     'null',
                                                     'Address',
                                                     provider.orderDetails
-                                                        .sellerDetails.address,
+                                                        .sellerDetails.address??"",
                                                     lastBorder: false),
                                               )
                                             : Container(),
@@ -215,7 +216,7 @@ class _OrdersDetailsPageState extends State<OrderDetailsPage> {
                                         Container(
                                           child: BookingHelper().bRow(
                                               'null',
-                                              'Payment status',
+                                              'Payment status'.tr(),
                                               provider
                                                   .orderDetails.paymentStatus,
                                               lastBorder: false),
@@ -243,7 +244,7 @@ class _OrdersDetailsPageState extends State<OrderDetailsPage> {
                                         Container(
                                           child: BookingHelper().bRow(
                                               'null',
-                                              'Order status',
+                                              'Order status'.tr(),
                                               provider.orderStatus,
                                               lastBorder: false),
                                         ),

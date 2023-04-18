@@ -1,20 +1,21 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterzilla_fixed_grid/flutterzilla_fixed_grid.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/booking_services/place_order_service.dart';
-import 'package:qixer/service/pay_services/bank_transfer_service.dart';
-import 'package:qixer/service/pay_services/payment_constants.dart';
-import 'package:qixer/service/payment_gateway_list_service.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/booking_services/place_order_service.dart';
+import 'package:troop/service/pay_services/bank_transfer_service.dart';
+import 'package:troop/service/pay_services/payment_constants.dart';
+import 'package:troop/service/payment_gateway_list_service.dart';
+import 'package:troop/view/booking/booking_helper.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../service/book_confirmation_service.dart';
 
@@ -172,7 +173,7 @@ class _PaymentChoosePageState extends State<PaymentChoosePage> {
                                                       height: 30,
                                                     ),
                                                     CommonHelper().buttonOrange(
-                                                        'Choose images', () {
+                                                        'Choose images'.tr(), () {
                                                       btProvider
                                                           .pickImage(context);
                                                     }),
@@ -243,14 +244,14 @@ class _PaymentChoosePageState extends State<PaymentChoosePage> {
                               contentPadding: const EdgeInsets.all(0),
                               title: Container(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 5),
+                                     EdgeInsets.symmetric(vertical: 5),
                                 child: Text(
-                                  "I agree with terms and conditions",
+                                  "I agree with the terms and conditions",
                                   style: TextStyle(
                                       color: ConstantColors().greyFour,
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14),
-                                ),
+                                ).tr(),
                               ),
                               value: termsAgree,
                               onChanged: (newValue) {
@@ -269,7 +270,7 @@ class _PaymentChoosePageState extends State<PaymentChoosePage> {
                                 () {
                               if (termsAgree == false) {
                                 OthersHelper().showToast(
-                                    'You must agree with the terms and conditions to place the order',
+                                    'You must agree with the terms and conditions to place the order'.tr(),
                                     Colors.black);
                               } else {
                                 payAction(

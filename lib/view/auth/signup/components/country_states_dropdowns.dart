@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class CountryStatesDropdowns extends StatefulWidget {
   const CountryStatesDropdowns({Key? key}) : super(key: key);
@@ -45,7 +45,7 @@ class _CountryStatesDropdownsState extends State<CountryStatesDropdowns> {
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
+                          child:DropdownButton<String>(
                             // menuMaxHeight: 200,
                             // isExpanded: true,
                             value: provider.selectedCountry,
@@ -119,8 +119,8 @@ class _CountryStatesDropdownsState extends State<CountryStatesDropdowns> {
                                       .indexOf(newValue)]);
                               // //fetch area based on selected country and state
 
-                              provider.fetchArea(provider.selectedCountryId,
-                                  provider.selectedStateId, context);
+                              // provider.fetchArea(provider.selectedCountryId,
+                              //     provider.selectedStateId, context);
 
                               // print(provider.statesDropdownIndexList[provider
                               //     .statesDropdownList
@@ -150,51 +150,51 @@ class _CountryStatesDropdownsState extends State<CountryStatesDropdowns> {
                 ),
 
                 // Area dropdown ===============>
-                CommonHelper().labelCommon("Choose area"),
-                provider.areaDropdownList.isNotEmpty
-                    ? Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(horizontal: 15),
-                        decoration: BoxDecoration(
-                          border: Border.all(color: cc.greyFive),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: DropdownButton<String>(
-                            // menuMaxHeight: 200,
-                            // isExpanded: true,
-                            value: provider.selectedArea,
-                            icon: Icon(Icons.keyboard_arrow_down_rounded,
-                                color: cc.greyFour),
-                            iconSize: 26,
-                            elevation: 17,
-                            style: TextStyle(color: cc.greyFour),
-                            onChanged: (newValue) {
-                              provider.setAreaValue(newValue);
-
-                              //setting the id of selected value
-                              provider.setSelectedAreaId(provider
-                                      .areaDropdownIndexList[
-                                  provider.areaDropdownList.indexOf(newValue)]);
-                            },
-                            items: provider.areaDropdownList
-                                .map<DropdownMenuItem<String>>((value) {
-                              return DropdownMenuItem(
-                                value: value,
-                                child: Text(
-                                  value,
-                                  style: TextStyle(
-                                      color: cc.greyPrimary.withOpacity(.8)),
-                                ),
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                      )
-                    : Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [OthersHelper().showLoading(cc.primaryColor)],
-                      ),
+                // CommonHelper().labelCommon("Choose area"),
+                // provider.areaDropdownList.isNotEmpty
+                //     ? Container(
+                //         width: double.infinity,
+                //         padding: const EdgeInsets.symmetric(horizontal: 15),
+                //         decoration: BoxDecoration(
+                //           border: Border.all(color: cc.greyFive),
+                //           borderRadius: BorderRadius.circular(6),
+                //         ),
+                //         child: DropdownButtonHideUnderline(
+                //           child: DropdownButton<String>(
+                //             // menuMaxHeight: 200,
+                //             // isExpanded: true,
+                //             value: provider.selectedArea,
+                //             icon: Icon(Icons.keyboard_arrow_down_rounded,
+                //                 color: cc.greyFour),
+                //             iconSize: 26,
+                //             elevation: 17,
+                //             style: TextStyle(color: cc.greyFour),
+                //             onChanged: (newValue) {
+                //               provider.setAreaValue(newValue);
+                //
+                //               //setting the id of selected value
+                //               provider.setSelectedAreaId(provider
+                //                       .areaDropdownIndexList[
+                //                   provider.areaDropdownList.indexOf(newValue)]);
+                //             },
+                //             items: provider.areaDropdownList
+                //                 .map<DropdownMenuItem<String>>((value) {
+                //               return DropdownMenuItem(
+                //                 value: value,
+                //                 child: Text(
+                //                   value,
+                //                   style: TextStyle(
+                //                       color: cc.greyPrimary.withOpacity(.8)),
+                //                 ),
+                //               );
+                //             }).toList(),
+                //           ),
+                //         ),
+                //       )
+                //     : Row(
+                //         mainAxisAlignment: MainAxisAlignment.start,
+                //         children: [OthersHelper().showLoading(cc.primaryColor)],
+                //       ),
               ],
             ));
   }

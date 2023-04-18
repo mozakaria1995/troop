@@ -1,7 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/reset_password_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
+import 'package:troop/service/auth_services/reset_password_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
 
 import '../../utils/constant_colors.dart';
 import '../../utils/custom_input.dart';
@@ -24,7 +25,7 @@ class _ResetPassEmailPageState extends State<ResetPassEmailPage> {
   Widget build(BuildContext context) {
     ConstantColors cc = ConstantColors();
     return Scaffold(
-      appBar: CommonHelper().appbarCommon('Reset password', context, () {
+      appBar: CommonHelper().appbarCommon('Reset password'.tr(), context, () {
         Navigator.pop(context);
       }),
       backgroundColor: Colors.white,
@@ -48,7 +49,7 @@ class _ResetPassEmailPageState extends State<ResetPassEmailPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
+                       SizedBox(
                         height: 33,
                       ),
                       Text(
@@ -57,12 +58,12 @@ class _ResetPassEmailPageState extends State<ResetPassEmailPage> {
                             color: cc.greyPrimary,
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
-                      ),
+                      ).tr(),
                       const SizedBox(
                         height: 13,
                       ),
                       CommonHelper().paragraphCommon(
-                          "Enter the email you used to creat account and we’ll send instruction for restting password",
+                          "Enter the email you used to create account and we well send information for resetting password",
                           TextAlign.start),
 
                       const SizedBox(
@@ -76,11 +77,11 @@ class _ResetPassEmailPageState extends State<ResetPassEmailPage> {
                         controller: emailController,
                         validation: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter your email';
+                            return 'Please enter your email'.tr();
                           }
                           return null;
                         },
-                        hintText: "Email",
+                        hintText: "Email".tr(),
                         icon: 'assets/icons/email.png',
                         textInputAction: TextInputAction.next,
                       ),

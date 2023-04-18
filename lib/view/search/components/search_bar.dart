@@ -1,8 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/serachbar_with_dropdown_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/serachbar_with_dropdown_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../../service/service_details_service.dart';
 import '../../home/components/service_card.dart';
@@ -60,7 +61,7 @@ class SearchBar extends StatelessWidget {
                           decoration: InputDecoration(
                               border: InputBorder.none,
                               prefixIcon: const Icon(Icons.search),
-                              hintText: "Search",
+                              hintText: "Search".tr(),
                               hintStyle: TextStyle(
                                   color: cc.greyPrimary.withOpacity(.8)),
                               contentPadding: const EdgeInsets.symmetric(
@@ -180,7 +181,7 @@ class SearchBar extends StatelessWidget {
                                         sellerName: provider.serviceMap[i]
                                             ['sellerName'],
                                         price: provider.serviceMap[i]['price'],
-                                        buttonText: 'Book Now',
+                                        buttonText: 'book now'.tr(),
                                         width: double.infinity,
                                         marginRight: 0.0,
                                         pressed: () {
@@ -222,11 +223,11 @@ class SearchBar extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                margin: const EdgeInsets.only(top: 20),
+                                margin:  EdgeInsets.only(top: 20),
                                 child: Text(
                                   'No result found',
                                   style: TextStyle(color: cc.greyPrimary),
-                                ),
+                                ).tr(),
                               )
                             ],
                           )
@@ -234,11 +235,11 @@ class SearchBar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            margin: const EdgeInsets.only(top: 20),
+                            margin:  EdgeInsets.only(top: 20),
                             child: Text(
                               'No result found',
                               style: TextStyle(color: cc.greyPrimary),
-                            ),
+                            ).tr(),
                           )
                         ],
                       )

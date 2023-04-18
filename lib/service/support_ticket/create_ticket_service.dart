@@ -3,10 +3,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/my_orders_service.dart';
-import 'package:qixer/service/support_ticket/support_ticket_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/my_orders_service.dart';
+import 'package:troop/service/support_ticket/support_ticket_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CreateTicketService with ChangeNotifier {

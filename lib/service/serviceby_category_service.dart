@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/model/recent_service_model.dart';
-import 'package:qixer/model/serviceby_category_model.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/db/db_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/recent_service_model.dart';
+import 'package:troop/model/serviceby_category_model.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/db/db_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -15,6 +15,7 @@ class ServiceByCategoryService with ChangeNotifier {
   var serviceMap = [];
   bool alreadySaved = false;
   bool hasError = false;
+  bool isLoading = true;
 
   late int totalPages;
 
@@ -30,6 +31,7 @@ class ServiceByCategoryService with ChangeNotifier {
 
   setTotalPage(newPageNumber) {
     totalPages = newPageNumber;
+    print("app total pages "+totalPages.toString());
     notifyListeners();
   }
 
@@ -39,18 +41,22 @@ class ServiceByCategoryService with ChangeNotifier {
     averageRateList = [];
     imageList = [];
     hasError = false;
+    isLoading=true;
     notifyListeners();
   }
 
   fetchCategoryService(context, categoryId, {bool isrefresh = false}) async {
+    // isLoading=true;
     //=================>
     var apiLink;
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var stateId = prefs.getString('state');
     if (stateId == null) {
+
       apiLink =
           '$baseApi/service-list/search-by-category/$categoryId?page=$currentPage';
     } else {
+
       apiLink =
           '$baseApi/service-list/search-by-category/$categoryId?page=$currentPage&state_id=$stateId';
     }
@@ -59,7 +65,7 @@ class ServiceByCategoryService with ChangeNotifier {
     if (isrefresh) {
       //making the list empty first to show loading bar (we are showing loading bar while the product list is empty)
       //we are make the list empty when the sub category or brand is selected because then the refresh is true
-      serviceMap = [];
+      // serviceMap = [];
       notifyListeners();
 
       Provider.of<ServiceByCategoryService>(context, listen: false)
@@ -76,10 +82,13 @@ class ServiceByCategoryService with ChangeNotifier {
     // });
     var connection = await checkConnection();
     if (connection) {
+
       //if connection is ok
       var response = await http.get(Uri.parse(apiLink));
 
       if (response.statusCode == 201) {
+        isLoading=false;
+
         var data = ServicebyCategoryModel.fromJson(jsonDecode(response.body));
 
         setTotalPage(data.allServices.lastPage);
@@ -125,16 +134,22 @@ class ServiceByCategoryService with ChangeNotifier {
 
         currentPage++;
         setCurrentPage(currentPage);
+
         return true;
       } else {
+        print("XXXXX"+response.body);
         hasError = true;
+        isLoading=false;
+
         notifyListeners();
+
         return false;
       }
     }
   }
 
   setServiceList(data, averageRateList, imageList, bool addnewData) {
+
     if (addnewData == false) {
       //make the list empty first so that existing data doesn't stay
       serviceMap = [];
@@ -142,6 +157,7 @@ class ServiceByCategoryService with ChangeNotifier {
     }
 
     for (int i = 0; i < data.length; i++) {
+
       serviceMap.add({
         'serviceId': data[i].id,
         'title': data[i].title,

@@ -4,20 +4,20 @@ import 'package:flutterzilla_fixed_grid/flutterzilla_fixed_grid.dart';
 
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/book_steps_service.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/coupon_service.dart';
-import 'package:qixer/service/booking_services/shedule_service.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/view/booking/booking_location_page.dart';
+import 'package:troop/service/book_steps_service.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/coupon_service.dart';
+import 'package:troop/service/booking_services/shedule_service.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/view/booking/booking_location_page.dart';
 
-import 'package:qixer/view/booking/delivery_address_page.dart.dart';
+import 'package:troop/view/booking/delivery_address_page.dart.dart';
 
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
-import 'package:qixer/view/utils/responsive.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
+import 'package:troop/view/utils/responsive.dart';
 import 'components/steps.dart';
 
 class ServiceSchedulePage extends StatefulWidget {

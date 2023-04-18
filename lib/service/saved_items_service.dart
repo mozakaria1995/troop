@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/db/db_service.dart';
-import 'package:qixer/service/home_services/recent_services_service.dart';
-import 'package:qixer/service/home_services/top_rated_services_service.dart';
+import 'package:troop/service/db/db_service.dart';
+import 'package:troop/service/home_services/recent_services_service.dart';
+import 'package:troop/service/home_services/top_rated_services_service.dart';
 
 class SavedItemService with ChangeNotifier {
   var savedItemList = [];

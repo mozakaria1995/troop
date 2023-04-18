@@ -3,7 +3,10 @@ import 'dart:io';
 import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:provider/provider.dart';
+import 'package:troop/service/app_string_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 late bool isIos;
 
@@ -57,4 +60,16 @@ checkPlatform() {
   } else if (Platform.isIOS) {
     isIos = true;
   }
+}
+
+runAtstart(BuildContext context) {
+  Provider.of<RtlService>(context, listen: false).fetchCurrency();
+  //language direction (ltr or rtl)
+  Provider.of<RtlService>(context, listen: false).fetchDirection();
+
+//fetch translated strings
+  Provider.of<AppStringService>(context, listen: false)
+      .fetchTranslatedStrings();
+
+
 }

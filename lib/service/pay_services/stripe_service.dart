@@ -3,9 +3,9 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/place_order_service.dart';
-import 'package:qixer/service/payment_gateway_list_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/booking_services/place_order_service.dart';
+import 'package:troop/service/payment_gateway_list_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StripeService with ChangeNotifier {
@@ -35,8 +35,7 @@ class StripeService with ChangeNotifier {
       ))
           .then((newValue) async {
         print('stripe payment successfull');
-        Provider.of<PlaceOrderService>(context, listen: false)
-            .makePaymentSuccess(context);
+        Provider.of<PlaceOrderService>(context, listen: false).makePaymentSuccess(context);
         // print('payment id' + paymentIntentData!['id'].toString());
         // print('payment client secret' +
         //     paymentIntentData!['client_secret'].toString());

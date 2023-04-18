@@ -4,11 +4,11 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/model/area_dropdown_model.dart';
-import 'package:qixer/model/country_dropdown_model.dart';
-import 'package:qixer/model/states_dropdown_model.dart';
-import 'package:qixer/service/profile_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/area_dropdown_model.dart';
+import 'package:troop/model/country_dropdown_model.dart';
+import 'package:troop/model/states_dropdown_model.dart';
+import 'package:troop/service/profile_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class CountryStatesService with ChangeNotifier {
   var countryDropdownList = [];
@@ -87,8 +87,7 @@ class CountryStatesService with ChangeNotifier {
             .profileDetails
             .userDetails
             .country
-            .country ??
-        'Select Country';
+            .country;
     selectedCountryId = Provider.of<ProfileService>(context, listen: false)
             .profileDetails
             .userDetails
@@ -162,7 +161,7 @@ class CountryStatesService with ChangeNotifier {
         setCountry(context, data: data);
 
         notifyListeners();
-        fetchStates(selectedCountryId, context);
+        fetchStates("68", context);
       } else {
         //error fetching data
         countryDropdownList.add('Select Country');
@@ -175,7 +174,8 @@ class CountryStatesService with ChangeNotifier {
     } else {
       //country list already loaded from api
       setCountry(context);
-      fetchStates(selectedCountryId, context);
+      fetchStates("68", context);
+
       // set_State(context);
       // setArea(context);
     }
@@ -206,9 +206,10 @@ class CountryStatesService with ChangeNotifier {
 
       set_State(context, data: data);
       notifyListeners();
-      fetchArea(countryId, selectedStateId, context);
+      // fetchArea(countryId, "50", context);
     } else {
-      fetchArea(countryId, selectedStateId, context);
+
+      // fetchArea(countryId, "50", context);
       //error fetching data
       statesDropdownList.add('Select State');
       statesDropdownIndexList.add('0');
@@ -218,32 +219,32 @@ class CountryStatesService with ChangeNotifier {
     }
   }
 
-  fetchArea(countryId, stateId, BuildContext context) async {
-    //make states list empty first
-    areaDropdownList = [];
-    areaDropdownIndexList = [];
-    notifyListeners();
-
-    var response = await http.get(Uri.parse(
-        '$baseApi/country/service-city/service-area/$countryId/$stateId'));
-
-    if (response.statusCode == 200 || response.statusCode == 201) {
-      var data = AreaDropdownModel.fromJson(jsonDecode(response.body));
-      for (int i = 0; i < data.serviceAreas.length; i++) {
-        areaDropdownList.add(data.serviceAreas[i].serviceArea);
-        areaDropdownIndexList.add(data.serviceAreas[i].id);
-      }
-
-      setArea(context, data: data);
-      notifyListeners();
-    } else {
-      areaDropdownList.add('Select area');
-      areaDropdownIndexList.add('0');
-      selectedArea = 'Select area';
-      selectedAreaId = '0';
-      notifyListeners();
-    }
-  }
+  // fetchArea(countryId, stateId, BuildContext context) async {
+  //   //make states list empty first
+  //   areaDropdownList = [];
+  //   areaDropdownIndexList = [];
+  //   notifyListeners();
+  //
+  //   var response = await http.get(Uri.parse(
+  //       '$baseApi/country/service-city/service-area/$countryId/$stateId'));
+  //
+  //   if (response.statusCode == 200 || response.statusCode == 201) {
+  //     var data = AreaDropdownModel.fromJson(jsonDecode(response.body));
+  //     for (int i = 0; i < data.serviceAreas.length; i++) {
+  //       areaDropdownList.add(data.serviceAreas[i].serviceArea);
+  //       areaDropdownIndexList.add(data.serviceAreas[i].id);
+  //     }
+  //
+  //     setArea(context, data: data);
+  //     notifyListeners();
+  //   } else {
+  //     areaDropdownList.add('Select area');
+  //     areaDropdownIndexList.add('0');
+  //     selectedArea = 'Select area';
+  //     selectedAreaId = '0';
+  //     notifyListeners();
+  //   }
+  // }
 
   setCountry(BuildContext context, {data}) {
     var profileData =

@@ -1,13 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qixer.app" xmlns:tools="http://schemas.android.com/tools">
+    package="com.troopandroid.app" xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
         
    <application
-        android:label="qixer"
+        android:label="Troop"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher" tools:node="merge">
+        android:icon="@mipmap/launcher_icon" tools:node="merge">
         <activity
             android:name=".MainActivity"
             android:exported="true"

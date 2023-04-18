@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_colors.dart';
 
 class OrdersHelper {
   ConstantColors cc = ConstantColors();

@@ -15,7 +15,7 @@ class ServiceDetailsModel {
       {required this.serviceDetails,
       required this.serviceImage,
       this.serviceSellerName,
-      required this.serviceSellerImage,
+       this.serviceSellerImage,
       this.sellerCompleteOrder,
       this.sellerRating,
       this.orderCompletionRate,
@@ -30,7 +30,7 @@ class ServiceDetailsModel {
   ServiceDetails serviceDetails;
   Image serviceImage;
   String? serviceSellerName;
-  Image serviceSellerImage;
+  Image? serviceSellerImage;
   int? sellerCompleteOrder;
   int? sellerRating;
   int? orderCompletionRate;
@@ -47,7 +47,7 @@ class ServiceDetailsModel {
         serviceDetails: ServiceDetails.fromJson(json["service_details"]),
         serviceImage: Image.fromJson(json["service_image"]),
         serviceSellerName: json["service_seller_name"],
-        serviceSellerImage: Image.fromJson(json["service_seller_image"]),
+        serviceSellerImage: json["service_seller_image"]!=null?Image.fromJson(json["service_seller_image"]):null,
         sellerCompleteOrder: json["seller_complete_order"],
         sellerRating: json["seller_rating"],
         orderCompletionRate: json["order_completion_rate"],
@@ -67,7 +67,7 @@ class ServiceDetailsModel {
         "service_details": serviceDetails.toJson(),
         "service_image": serviceImage.toJson(),
         "service_seller_name": serviceSellerName,
-        "service_seller_image": serviceSellerImage.toJson(),
+        "service_seller_image": serviceSellerImage!.toJson(),
         "seller_complete_order": sellerCompleteOrder,
         "seller_rating": sellerRating,
         "order_completion_rate": orderCompletionRate,
@@ -344,14 +344,14 @@ class SellerForMobile {
     this.name,
     this.image,
     this.countryId,
-    required this.country,
+     this.country,
   });
 
   int? id;
   String? name;
   String? image;
   int? countryId;
-  Country country;
+  Country? country;
 
   factory SellerForMobile.fromJson(Map<String, dynamic> json) =>
       SellerForMobile(
@@ -359,7 +359,7 @@ class SellerForMobile {
         name: json["name"],
         image: json["image"],
         countryId: json["country_id"],
-        country: Country.fromJson(json["country"]),
+        country: json["country"]!=null?Country.fromJson(json["country"]):null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -367,7 +367,7 @@ class SellerForMobile {
         "name": name,
         "image": image,
         "country_id": countryId,
-        "country": country.toJson(),
+        "country": country!.toJson(),
       };
 }
 

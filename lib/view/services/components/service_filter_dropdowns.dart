@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/all_services_service.dart';
-import 'package:qixer/view/services/components/service_filter_dropdown_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/responsive.dart';
+import 'package:troop/service/all_services_service.dart';
+import 'package:troop/view/services/components/service_filter_dropdown_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/responsive.dart';
 
 class ServiceFilterDropdowns extends StatelessWidget {
   const ServiceFilterDropdowns({Key? key}) : super(key: key);

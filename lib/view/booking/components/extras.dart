@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/rtl_service.dart';
+import 'package:troop/service/rtl_service.dart';
 
 import '../../../service/booking_services/personalization_service.dart';
 import '../../services/service_helper.dart';
@@ -254,7 +254,7 @@ class _ExtrasState extends State<Extras> {
         const SizedBox(
           height: 27,
         ),
-        CommonHelper().titleCommon('Benifits of the Package:'),
+        CommonHelper().titleCommon('Benefits of the Package:'),
         const SizedBox(
           height: 17,
         ),

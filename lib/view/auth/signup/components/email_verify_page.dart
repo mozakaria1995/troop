@@ -1,15 +1,16 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/email_verify_service.dart';
-import 'package:qixer/service/auth_services/reset_pass_otp_service.dart';
-import 'package:qixer/service/auth_services/reset_password_service.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/auth_services/email_verify_service.dart';
+import 'package:troop/service/auth_services/reset_pass_otp_service.dart';
+import 'package:troop/service/auth_services/reset_password_service.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class EmailVerifyPage extends StatefulWidget {
   const EmailVerifyPage(
@@ -69,12 +70,12 @@ class _EmailVerifyPageState extends State<EmailVerifyPage> {
                     ),
                   ),
                 ),
-                CommonHelper().titleCommon("Enter the 4 digit code"),
+                CommonHelper().titleCommon("Enter the 4 digit code".tr()),
                 const SizedBox(
                   height: 13,
                 ),
                 CommonHelper().paragraphCommon(
-                    'Enter the 4 digit code we sent to to your email in order verify your email',
+                    'Enter the 4 digit code we sent to to your email in order verify your email'.tr(),
                     TextAlign.center),
                 const SizedBox(
                   height: 33,
@@ -158,7 +159,7 @@ class _EmailVerifyPageState extends State<EmailVerifyPage> {
                                               widget.email, context,
                                               isFromOtpPage: true);
                                         },
-                                      text: 'Send again',
+                                      text: 'Send again'.tr(),
                                       style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14,

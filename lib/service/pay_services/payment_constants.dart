@@ -3,17 +3,17 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/place_order_service.dart';
-import 'package:qixer/service/pay_services/cashfree_service.dart';
-import 'package:qixer/service/pay_services/flutterwave_service.dart';
-import 'package:qixer/service/pay_services/instamojo_service.dart';
-import 'package:qixer/service/pay_services/mercado_pago_service.dart';
-import 'package:qixer/service/pay_services/paypal_service.dart';
-import 'package:qixer/service/pay_services/paystack_service.dart';
+import 'package:troop/service/booking_services/place_order_service.dart';
+import 'package:troop/service/pay_services/cashfree_service.dart';
+import 'package:troop/service/pay_services/flutterwave_service.dart';
+import 'package:troop/service/pay_services/instamojo_service.dart';
+import 'package:troop/service/pay_services/mercado_pago_service.dart';
+import 'package:troop/service/pay_services/paypal_service.dart';
+import 'package:troop/service/pay_services/paystack_service.dart';
 
-import 'package:qixer/service/pay_services/razorpay_service.dart';
-import 'package:qixer/service/pay_services/stripe_service.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/pay_services/razorpay_service.dart';
+import 'package:troop/service/pay_services/stripe_service.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 randomOrderId() {
   var rng = Random();
@@ -69,7 +69,7 @@ payAction(String method, BuildContext context, imagePath) {
 
       break;
     case 'paytm':
-      // MercadoPagoService().mercadoPay();
+      MercadoPagoService().mercadoPay(context);
 
       break;
     case 'razorpay':

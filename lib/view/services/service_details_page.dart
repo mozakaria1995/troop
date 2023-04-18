@@ -1,17 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/service_details_service.dart';
-import 'package:qixer/view/booking/booking_location_page.dart';
-import 'package:qixer/view/booking/service_personalization_page.dart';
-import 'package:qixer/view/services/components/about_seller_tab.dart';
-import 'package:qixer/view/services/components/image_big.dart';
-import 'package:qixer/view/services/components/overview_tab.dart';
-import 'package:qixer/view/services/components/review_tab.dart';
-import 'package:qixer/view/services/review/write_review_page.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/service_details_service.dart';
+import 'package:troop/view/booking/booking_location_page.dart';
+import 'package:troop/view/booking/service_personalization_page.dart';
+import 'package:troop/view/services/components/about_seller_tab.dart';
+import 'package:troop/view/services/components/image_big.dart';
+import 'package:troop/view/services/components/overview_tab.dart';
+import 'package:troop/view/services/components/review_tab.dart';
+import 'package:troop/view/services/review/write_review_page.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 import '../../service/booking_services/personalization_service.dart';
 import '../utils/common_helper.dart';
@@ -110,10 +111,10 @@ class _ServiceDetailsPageState extends State<ServiceDetailsPage>
                                         color: cc.greyParagraph,
                                         fontWeight: FontWeight.normal),
                                     controller: _tabController,
-                                    tabs: const [
-                                      Tab(text: 'Overview'),
-                                      Tab(text: 'About seller'),
-                                      Tab(text: 'Review'),
+                                    tabs:  [
+                                      Tab(text: 'Overview'.tr()),
+                                      Tab(text: 'About seller'.tr()),
+                                      Tab(text: 'Review'.tr()),
                                     ],
                                   ),
                                   Container(

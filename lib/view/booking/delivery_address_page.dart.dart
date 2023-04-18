@@ -1,17 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/booking_services/personalization_service.dart';
-import 'package:qixer/service/profile_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/auth/signup/signup_helper.dart';
-import 'package:qixer/view/booking/book_confirmation_page.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/booking_services/personalization_service.dart';
+import 'package:troop/service/profile_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/auth/signup/signup_helper.dart';
+import 'package:troop/view/booking/book_confirmation_page.dart';
+import 'package:troop/view/booking/booking_helper.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
 
 import '../../service/book_steps_service.dart';
 import '../utils/custom_input.dart';
@@ -157,11 +158,11 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
                                     controller: emailController,
                                     validation: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter your email';
+                                        return 'Please enter your email'.tr();
                                       }
                                       return null;
                                     },
-                                    hintText: "Enter your email",
+                                    hintText: "Enter your email".tr(),
                                     icon: 'assets/icons/email-grey.png',
                                     textInputAction: TextInputAction.next,
                                   ),
@@ -170,7 +171,7 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
                                   ),
 
                                   //Phone number field
-                                  CommonHelper().labelCommon("Phone"),
+                                  CommonHelper().labelCommon("Phone".tr()),
                                   Consumer<RtlService>(
                                     builder: (context, rtlP, child) =>
                                         IntlPhoneField(
@@ -193,23 +194,23 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            CommonHelper()
-                                                .labelCommon("Post code"),
-
-                                            CustomInput(
-                                              controller: postCodeController,
-                                              validation: (value) {
-                                                if (value == null ||
-                                                    value.isEmpty) {
-                                                  return 'Please enter post code';
-                                                }
-                                                return null;
-                                              },
-                                              hintText: "Enter your post code",
-                                              icon: 'assets/icons/location.png',
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                            ),
+                                            // CommonHelper()
+                                            //     .labelCommon("Post code"),
+                                            //
+                                            // CustomInput(
+                                            //   controller: postCodeController,
+                                            //   validation: (value) {
+                                            //     if (value == null ||
+                                            //         value.isEmpty) {
+                                            //       return 'Please enter post code';
+                                            //     }
+                                            //     return null;
+                                            //   },
+                                            //   hintText: "Enter your post code",
+                                            //   icon: 'assets/icons/location.png',
+                                            //   textInputAction:
+                                            //       TextInputAction.next,
+                                            // ),
 
                                             //Address ============>
 
@@ -224,11 +225,11 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
                                               validation: (value) {
                                                 if (value == null ||
                                                     value.isEmpty) {
-                                                  return 'Please enter your address';
+                                                  return 'Please enter your address'.tr();
                                                 }
                                                 return null;
                                               },
-                                              hintText: "Enter your address",
+                                              hintText: "Enter your address".tr(),
                                               icon: 'assets/icons/location.png',
                                               textInputAction:
                                                   TextInputAction.next,
@@ -276,7 +277,7 @@ class _DeliveryAddressPageState extends State<DeliveryAddressPage> {
                                     emailController.text,
                                     phoneController.text,
                                     // phoneNumber,
-                                    postCodeController.text,
+                                    "1111",
                                     addressController.text,
                                     notesController.text);
                             Navigator.push(

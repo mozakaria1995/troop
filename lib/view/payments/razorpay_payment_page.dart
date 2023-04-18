@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/view/booking/booking_helper.dart';
+import 'package:troop/view/booking/booking_helper.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 import '../../service/booking_services/place_order_service.dart';
 import '../../service/payment_gateway_list_service.dart';

@@ -1,15 +1,16 @@
 // ignore_for_file: avoid_print
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/booking_services/book_service.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/booking/service_personalization_page.dart';
-import 'package:qixer/view/utils/responsive.dart';
+import 'package:troop/service/booking_services/book_service.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/booking/service_personalization_page.dart';
+import 'package:troop/view/utils/responsive.dart';
 
 import '../../../service/booking_services/personalization_service.dart';
 import '../../booking/booking_location_page.dart';
@@ -84,7 +85,7 @@ class ServiceCard extends StatelessWidget {
                     screenWidth < fourinchScreenWidth
                         ? Container()
                         : AutoSizeText(
-                            'Starts from:',
+                            'Starts from:'.tr(),
                             textAlign: TextAlign.start,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -274,7 +275,7 @@ class ServiceCardContents extends StatelessWidget {
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
-                  ),
+                  ).tr(),
                   const SizedBox(
                     width: 6,
                   ),

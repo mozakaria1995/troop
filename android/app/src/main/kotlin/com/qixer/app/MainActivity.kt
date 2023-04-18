@@ -1,4 +1,4 @@
-package com.qixer.app
+package com.troopandroid.app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -2,14 +2,14 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/auth_services/email_verify_service.dart';
-import 'package:qixer/service/auth_services/login_service.dart';
-import 'package:qixer/service/common_service.dart';
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/view/auth/signup/components/email_verify_page.dart';
-import 'package:qixer/view/home/landing_page.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/auth_services/email_verify_service.dart';
+import 'package:troop/service/auth_services/login_service.dart';
+import 'package:troop/service/common_service.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/view/auth/signup/components/email_verify_page.dart';
+import 'package:troop/view/home/landing_page.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class SignupService with ChangeNotifier {
   int selectedPage = 0;

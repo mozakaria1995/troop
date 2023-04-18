@@ -4,8 +4,8 @@ import 'dart:async';
 import 'dart:convert' as convert;
 import 'package:http_auth/http_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/payment_gateway_list_service.dart';
-import 'package:qixer/view/payments/PaypalPayment.dart';
+import 'package:troop/service/payment_gateway_list_service.dart';
+import 'package:troop/view/payments/PaypalPayment.dart';
 
 import '../booking_services/place_order_service.dart';
 

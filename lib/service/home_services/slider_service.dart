@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:qixer/model/slider_model.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/model/slider_model.dart';
+import 'package:troop/view/utils/others_helper.dart';
 
 class SliderService with ChangeNotifier {
   List<Map> sliderDetailsList = [];
@@ -13,6 +13,7 @@ class SliderService with ChangeNotifier {
       var response = await http.get(Uri.parse('$baseApi/slider'));
 
       if (response.statusCode == 201) {
+        print(response.body);
         var data = SliderModel.fromJson(jsonDecode(response.body));
 
         for (int i = 0; i < data.sliderDetails.length; i++) {

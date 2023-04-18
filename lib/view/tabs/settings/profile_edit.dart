@@ -1,21 +1,22 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:provider/provider.dart';
-import 'package:qixer/service/country_states_service.dart';
-import 'package:qixer/service/profile_edit_service.dart';
-import 'package:qixer/service/profile_service.dart';
-import 'package:qixer/service/rtl_service.dart';
-import 'package:qixer/view/auth/signup/components/country_states_dropdowns.dart';
-import 'package:qixer/view/auth/signup/signup_helper.dart';
-import 'package:qixer/view/booking/components/textarea_field.dart';
-import 'package:qixer/view/utils/common_helper.dart';
-import 'package:qixer/view/utils/constant_colors.dart';
-import 'package:qixer/view/utils/constant_styles.dart';
-import 'package:qixer/view/utils/others_helper.dart';
+import 'package:troop/service/country_states_service.dart';
+import 'package:troop/service/profile_edit_service.dart';
+import 'package:troop/service/profile_service.dart';
+import 'package:troop/service/rtl_service.dart';
+import 'package:troop/view/auth/signup/components/country_states_dropdowns.dart';
+import 'package:troop/view/auth/signup/signup_helper.dart';
+import 'package:troop/view/booking/components/textarea_field.dart';
+import 'package:troop/view/utils/common_helper.dart';
+import 'package:troop/view/utils/constant_colors.dart';
+import 'package:troop/view/utils/constant_styles.dart';
+import 'package:troop/view/utils/others_helper.dart';
 import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -94,7 +95,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
           Navigator.pop(context);
         } else {
           OthersHelper().showToast(
-              'Please wait while the profile is updating', Colors.black);
+              'Please wait while the profile is updating'.tr(), Colors.black);
         }
       }),
       body: Listener(
@@ -204,7 +205,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             }
                             return null;
                           },
-                          hintText: "Enter your full name",
+                          hintText: "Enter your full name".tr(),
                           icon: 'assets/icons/user.png',
                           textInputAction: TextInputAction.next,
                         ),
@@ -219,11 +220,11 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                           controller: emailController,
                           validation: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Please enter your email';
+                              return 'Please enter your email'.tr();
                             }
                             return null;
                           },
-                          hintText: "Enter your email",
+                          hintText: "Enter your email".tr(),
                           icon: 'assets/icons/email-grey.png',
                           textInputAction: TextInputAction.next,
                         ),
@@ -252,20 +253,20 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                             },
                           ),
                         ),
-                        CommonHelper().labelCommon("Post code"),
-                        CustomInput(
-                          controller: postCodeController,
-                          validation: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter post code';
-                            }
-                            return null;
-                          },
-                          isNumberField: true,
-                          hintText: "Enter your post code",
-                          icon: 'assets/icons/user.png',
-                          textInputAction: TextInputAction.next,
-                        ),
+                        // CommonHelper().labelCommon("Post code"),
+                        // CustomInput(
+                        //   controller: postCodeController,
+                        //   validation: (value) {
+                        //     if (value == null || value.isEmpty) {
+                        //       return 'Please enter post code'.tr();
+                        //     }
+                        //     return null;
+                        //   },
+                        //   isNumberField: true,
+                        //   hintText: "Enter your post code",
+                        //   icon: 'assets/icons/user.png',
+                        //   textInputAction: TextInputAction.next,
+                        // ),
                       ],
                     ),
                     const SizedBox(
@@ -283,7 +284,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                         ),
                         CommonHelper().labelCommon("Your Address"),
                         TextareaField(
-                          hintText: 'Address',
+                          hintText: 'Address'.tr(),
                           notesController: addressController,
                         ),
                       ],
@@ -298,7 +299,7 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                         ),
                         CommonHelper().labelCommon("About"),
                         TextareaField(
-                          hintText: 'About',
+                          hintText: 'About'.tr(),
                           notesController: aboutController,
                         ),
                       ],
@@ -311,18 +312,18 @@ class _ProfileEditPageState extends State<ProfileEditPage> {
                       if (provider.isloading == false) {
                         if (addressController.text.isEmpty) {
                           OthersHelper().showToast(
-                              'Address field is required', Colors.black);
+                              'Address field is required'.tr(), Colors.black);
                           return;
                         } else if (phoneController.text.isEmpty) {
                           OthersHelper().showToast(
-                              'Phone field is required', Colors.black);
+                              'Phone field is required'.tr(), Colors.black);
                           return;
                         }
                         showTopSnackBar(
                             context,
-                            const CustomSnackBar.success(
+                             CustomSnackBar.success(
                               message:
-                                  "Updating profile...It may take few seconds",
+                                  "Updating profile...It may take few seconds".tr(),
                             ),
                             persistent: true,
                             onAnimationControllerInit: (controller) =>
